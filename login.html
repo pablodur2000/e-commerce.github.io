@@ -7,8 +7,12 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/login.css">
+
+  <script src="https://kit.fontawesome.com/de676a80bf.js" crossorigin="anonymous"></script>
   <style>
     body {
       background-color: rgb(248, 249, 250);
@@ -17,13 +21,61 @@
 </head>
 
 <body>
-  <main class="mt-5">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="login.html">Login</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
+
+  <main class="mt-5">
+    <div class="container container-login">
+      
+      <section class="login-section">
+          <h1>Login</h1>
+
+          <form action="">
+            <div class="item-form-container">
+              <label for="user" class="form-label">Usuario</label>
+              <div class="icon-and-input-div">
+                <i class="fa-solid fa-user"></i>
+                <input placeholder="Nombre de usuario" type="text" name="user" class="form-input" id="user">
+              </div>
+            </div>
+            <div class="item-form-container">
+              <label for="password" class="form-label">Contraseña</label>
+              <div class="icon-and-input-div">
+                <i class="fa-solid fa-lock"></i>
+                <input placeholder="Ingrese su contraseña" type="password" name="password" class="form-input" id="password">
+              </div>
+            </div>
+            <button type="submit" class="form-button">Ingresar</button>
+          </form>
+
+      </section>
+
+    </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
