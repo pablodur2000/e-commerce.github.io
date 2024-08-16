@@ -1,0 +1,113 @@
+
+.container-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    box-sizing: border-box;
+}
+
+.login-section{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 450px;
+    height: 450px;
+    border-radius: 15px;
+
+    -webkit-box-shadow: 15px 15px 5px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: 15px 15px 5px 0px rgba(0,0,0,0.44);
+    box-shadow: 15px 15px 5px 0px rgba(0,0,0,0.44);
+}
+
+.login-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 3px; /* Controla el grosor del borde */
+    background: linear-gradient(to right, #FFCB99, #FF9733);
+    z-index: -1;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.login-section h1{
+    font-size: 39px;
+    font-weight: 800;
+    font-family: 'Inter', serif !important; 
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 70%;
+}
+
+.item-form-container label{
+    margin-left: 5px;
+    font-family: 'Inter', serif !important;
+    font-size: 17px;
+}
+
+.icon-and-input-div{
+    border-bottom: 1px solid rgb(180, 180, 180);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+}
+
+
+.icon-and-input-div i{
+    font-size: 20px;
+    opacity: 0.6;
+}
+
+.form-input{
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+form button{
+    height: 60px;
+    margin-top: 15px;
+    border-radius: 18px;
+    font-size: 24px;
+    letter-spacing: 3px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(to right, #FFCB99, #FF9733); /* Degradado horizontal */
+    border: none;
+    -webkit-box-shadow: 0px 6px 5px -4px rgba(0,0,0,0.61);
+    -moz-box-shadow: 0px 6px 5px -4px rgba(0,0,0,0.61);
+    box-shadow: 0px 6px 5px -4px rgba(0,0,0,0.61);
+
+    transition: all 200ms ease;
+}
+
+form button:hover{
+    filter:saturate(2) contrast(1.2) ;
+}
+
+@media (max-width: 375px){
+    form{
+        width: 80%;
+    }
+}
+
+@media (max-width: 212px){
+    form button{
+        font-size: 18px;
+    }
+}
