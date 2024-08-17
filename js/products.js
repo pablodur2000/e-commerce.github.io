@@ -21,10 +21,10 @@ const dataOfCars = async () => {
 
             productDiv.innerHTML = `
                 <img src="${product.image}" alt="${product.name}"/ >
-                <h2>${product.name}</h2>
-                <p>${product.description}</p>
-                <p>Precio: ${product.currency} ${product.cost}</p>
-                <p>Vendidos: ${product.soldCount}</p>
+                <p class="title">${product.name}</h2>
+                <p class="description model">${product.description}</p>
+                <p class="description">Precio: ${product.currency} ${product.cost}</p>
+                <p class="description">Vendidos: ${product.soldCount}</p>
             `;
 
             container.appendChild(productDiv);
