@@ -188,3 +188,36 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+#carContainer{
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  );
+  gap: 16px;
+  max-width: 1000px;
+  margin: 5% auto;
+}
+
+.productCar {
+  border: rgb(205, 203, 203) solid 1px;
+  border-radius: 4px;
+  padding: 30px 30px 10px 30px
+}
+.productCar img{
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  font-weight: 600;
+  font-size: larger;
+}
+.description {
+  font-size: 1rem;
+  color: gray;
+}
+.model {
+  height: 80px;
+}
