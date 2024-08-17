@@ -13,7 +13,7 @@ const dataOfCars = async () => {
 
         const container = document.getElementById('carContainer');
 
-        products.forEach(product => {
+        products.map(product => {
             const productDiv = document.createElement('div');
             productDiv.className = 'productCar';
 
