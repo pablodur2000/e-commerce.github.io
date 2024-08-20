@@ -35,10 +35,9 @@
     background: linear-gradient(to right, #FFCB99, #FF9733);
     z-index: -1;
     -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#ffffff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    mask-composite: exclude;
 }
 
 .login-section h1{
