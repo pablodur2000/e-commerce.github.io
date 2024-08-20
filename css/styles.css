@@ -208,11 +208,14 @@ a.custom-card:hover {
 .productCar img{
   width: 100%;
   height: auto;
+  border-radius: 6px;
+  transition: opacity 300ms ease;
 }
 
 .title {
   font-weight: 600;
   font-size: larger;
+  margin-top: 10px;
 }
 .description {
   font-size: 1rem;
