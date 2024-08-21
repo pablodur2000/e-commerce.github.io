@@ -1,10 +1,11 @@
 //GET CARS
-const spiner = document.querySelector('#spinner-wrapper')
+const spiner = document.querySelector('#spinner-wrapper');
+const categoryID = localStorage.getItem("catID");
 
 const dataOfCars = async () => {
     try {
         spiner.style.display = 'flex';
-        const response = await fetch('https://japceibal.github.io/emercado-api/cats_products/101.json');
+        const response = await fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryID}.json`);
 
         if (!response.ok) {
             throw new Error('No hay respuesta: ' + response.statusText);
