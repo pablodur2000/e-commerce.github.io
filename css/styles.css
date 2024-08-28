@@ -209,7 +209,7 @@ a.custom-card:hover {
   width: 100%;
   height: auto;
   border-radius: 6px;
-  transition: opacity 300ms ease;
+  transition: opacity 600ms ease;
 }
 
 .title {
