@@ -39,13 +39,12 @@ const dataOfCars = async () => {
         
             img.addEventListener('mouseover', () => {
                 let imgSrcSecond = imgSrc.split("_").shift() + "_2.jpg";
-            
                 img.style.opacity = 0;
             
                 setTimeout(() => {
                     img.setAttribute("src", imgSrcSecond);
                     img.style.opacity = 1;
-                }, 100); 
+                }, 200); 
             });
         
             img.addEventListener('mouseout', () => {
@@ -54,7 +53,7 @@ const dataOfCars = async () => {
                 setTimeout(() => {
                     img.setAttribute("src", imgSrc);
                     img.style.opacity = 1;
-                }, 100); 
+                }, 200); 
             });
         });
 

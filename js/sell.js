@@ -29,7 +29,7 @@ function updateTotalCosts(){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("user");
     if (!token){
         window.location.href = "login.html";
     }

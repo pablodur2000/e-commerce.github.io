@@ -25,7 +25,7 @@ document.getElementById("login").addEventListener("submit", function (e) {
     } 
     else {
         alert("Login exitoso");
-        localStorage.setItem("token", 123456);
+        localStorage.setItem("user", usuario);
         window.location.href = "index.html";
     }
 });
