@@ -1,4 +1,3 @@
-
 const navItemLogin = document.querySelectorAll('.nav-link');
 const user = localStorage.getItem("user");
 
