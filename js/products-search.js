@@ -21,34 +21,5 @@
         });
     });
 
-    //funcion para obtener los datos de la api
-    const dataOfProducts = async () => {
-        try {
-            const response = await fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryID}.json`)
-            if (!response.ok) {
-                throw new Error('No hay respuesta: ' + response.statusText); //verificamos si hubo respuesta
-            }
-
-            const data = await response.json(); //convertimos la respuesta a json para obtener los productos
-
-
-            const carContainer = document.getElementById('carContainer'); //seleccionamos el contenedor donde se mostraran los productos
-
-            // Iteramos por los productos y los añadimos al contenedor
-            dataSorted.forEach(product => {
-                const productDiv = document.createElement('div');
-               ;
-                carContainer.appendChild(productDiv); //ageregamos el div del producto al contenedor principal
-            });
-        } catch (error) {
-            console.error('Error al cargar los productos:', error); //capturamos cualquier error que pueda ocurrir durante el fetch
-        }
-    };
-
-    // Cargar los productos cuando el DOM esté listo
-    document.addEventListener("DOMContentLoaded", dataOfProducts);
-
-
-    console.log(carContainer);
    
 
