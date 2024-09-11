@@ -197,7 +197,7 @@ a.custom-card:hover {
   );
   gap: 16px;
   max-width: 1000px;
-  margin: 5% auto;
+  margin: 10px 5% auto;
 }
 
 .productCar {
@@ -223,4 +223,20 @@ a.custom-card:hover {
 }
 .model {
   height: 80px;
+}
+
+.sort-text {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+.filters-div {
+  display: flex;
+  margin-top: 10%;
+  margin-bottom: 1%;
+}
+
+#dropdown-filter {
+  display: flex;
+  margin-left: 5%;
 }
