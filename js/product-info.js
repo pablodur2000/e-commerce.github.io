@@ -1,6 +1,7 @@
 const title = document.getElementById("title");
 const price = document.getElementById("price");
 const sold = document.getElementById("sold");
+const nameProduct = document.getElementById("nameProduct");
 const descriptions = document.getElementById("descriptions");
 const img1 = document.getElementById("img1");
 const img2 = document.getElementById("img2");
@@ -12,7 +13,7 @@ const productData = () => {
   const product = localStorage.getItem("product");
 
   const data = JSON.parse(product);
-
+  nameProduct.innerHTML = data.name
   title.innerHTML = data.name;
   price.innerHTML = data.currency + " " + data.cost;
   descriptions.innerHTML = data.description;
