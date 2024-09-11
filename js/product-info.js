@@ -13,6 +13,7 @@ const productData = () => {
   const product = localStorage.getItem("product");
 
   const data = JSON.parse(product);
+  console.log(data)
   nameProduct.innerHTML = data.name
   title.innerHTML = data.name;
   price.innerHTML = data.currency + " " + data.cost;
