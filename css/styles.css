@@ -196,7 +196,6 @@ a.custom-card:hover {
     minmax(300px, 1fr)
   );
   gap: 16px;
-  max-width: 1000px;
   margin: 10px 5% auto;
 }
 
@@ -234,9 +233,9 @@ a.custom-card:hover {
   display: flex;
   margin-top: 10%;
   margin-bottom: 1%;
+  justify-content: space-evenly;
 }
 
 #dropdown-filter {
   display: flex;
-  margin-left: 5%;
 }
