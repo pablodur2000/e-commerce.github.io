@@ -50,20 +50,17 @@
       </div>
     </nav>
     <main class="pb-5 container">
-      <div class="row">
-        <div class="col text-end">
-          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-            <input type="radio" class="btn-check" name="options" id="sortAsc">
-            <label class="btn btn-light" for="sortAsc">A-Z</label>
-            <input type="radio" class="btn-check" name="options" id="sortDesc">
-            <label class="btn btn-light" for="sortDesc">Z-A</label>
-            <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
-            <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
-          </div>
+      <div class="filters-div">
+        <div id="dropdown-filter">
+          <div class="sort-text">Ordenar por</div>
+          <select id="sortOptions" class="form-select" aria-label="Default select example">
+              <option value="price-asc">Menor precio</option>
+              <option value="price-desc">Mayor precio</option>
+              <option value="relevance">Más relevantes</option>
+          </select>
         </div>
-      </div>
-        <div class="row" id="filter">
-            <div class="row container p-0 filter-row">
+        <div id="filter" class="filter-row">
+            <div class="row">
               <div class="col">
                 <p class="font-weight-normal text-end my-2">Precio</p>
               </div>
@@ -76,11 +73,13 @@
               <div class="col-3 p-0">
                 <div class="btn-group" role="group">
                   <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                  <button class="btn btn-dark btn-sm" id="clearRangeFilter">Limpiar</button>
                 </div>
               </div>
             </div>
         </div>
+      </div>
+     
         <div id="carContainer"></div>
     </main>
     <footer class="text-muted">

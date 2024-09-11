@@ -225,8 +225,21 @@ a.custom-card:hover {
   height: 80px;
 }
 
-.filter-row {
-  width: 50%;
-  margin-left: 33%;
-  margin-top: 100px;
+.sort-text {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+.filters-div {
+  display: flex;
+  margin-top: 10%;
+  margin-bottom: 1%;
+}
+
+#dropdown-filter {
+  display: flex;
+  margin-left: 5%;
+}
+.row {
+  margin-left: 30%;
 }

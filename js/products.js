@@ -4,77 +4,88 @@ let maxPrice = undefined;
 const spiner = document.querySelector('#spinner-wrapper');
 const categoryID = localStorage.getItem("catID");
 
-const dataOfCars = async () => {
+let currentProductsArray = [];
+
+const ORDER_ASC_BY_PRICE = "ASC_PRICE";
+const ORDER_DESC_BY_PRICE = "DESC_PRICE";
+const ORDER_DESC_BY_RELEVANCE = "DESC_RELEVANCE";
+
+
+const fetchProducts = async () => {
     try {
         spiner.style.display = 'flex';
         const response = await fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryID}.json`);
 
         if (!response.ok) {
             throw new Error('No hay respuesta: ' + response.statusText);
-        };
+        }
 
         const data = await response.json();
-        const products = data.products;
+        currentProductsArray = data.products;
 
-        console.log(products);
+        console.log(currentProductsArray);
 
-        const container = document.getElementById('carContainer');
-               // limpio el contenedor antes de hacer el filtro porque esta funcion ya se ejecuto al cargar el documento 
-                container.innerHTML = ''
-                products.filter(product => {
-                    if (minPrice === undefined && maxPrice === undefined) {
-                        return true;
-                        }
-                    return (
-                        (minPrice === undefined || parseInt(product.cost) >= minPrice) &&
-                        (maxPrice === undefined || parseInt(product.cost) <= maxPrice)
-                    );
-                }).forEach(product => {
-                    const productDiv = document.createElement('div');
-                    productDiv.className = 'productCar';
-                
-                    productDiv.innerHTML = `
-                        <img src="${product.image}" class="product-image" alt="${product.name}"/>
-                        <p class="title">${product.name}</p>
-                        <p class="description model">${product.description}</p>
-                        <p class="description">Precio: ${product.currency} ${product.cost}</p>
-                        <p class="description">Vendidos: ${product.soldCount}</p>
-                    `;
-                
-                    container.appendChild(productDiv);
-                });
-
-                let productImage = document.querySelectorAll('.product-image');
-                productImage.forEach(img => {
-                    let imgSrc = img.getAttribute('src');
-                
-                    img.addEventListener('mouseover', () => {
-                        let imgSrcSecond = imgSrc.split("_").shift() + "_2.jpg";
-                        img.style.opacity = 0;
-                    
-                        setTimeout(() => {
-                            img.setAttribute("src", imgSrcSecond);
-                            img.style.opacity = 1;
-                        }, 200); 
-                    });
-                
-                    img.addEventListener('mouseout', () => {
-                        img.style.opacity = 0;
-                    
-                        setTimeout(() => {
-                            img.setAttribute("src", imgSrc);
-                            img.style.opacity = 1;
-                        }, 200); 
-                    });
-                });
-
-                spiner.style.display = 'none';
-    
+        showProducts(currentProductsArray);
+      
+        spiner.style.display = 'none';
     } catch (error) {
         console.error('Error al traer los datos', error);
-    };
+    }
 }
-document.addEventListener('DOMContentLoaded', dataOfCars);
+
+const showProducts = (products) => {
+    const container = document.getElementById('carContainer');
+    container.innerHTML = '';
+
+    products.filter(product => {
+        if (minPrice === undefined && maxPrice === undefined) {
+            return true;
+        }
+        return (
+            (minPrice === undefined || parseInt(product.cost) >= minPrice) &&
+            (maxPrice === undefined || parseInt(product.cost) <= maxPrice)
+        );
+    }).forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'productCar';
+
+        productDiv.innerHTML = `
+            <img src="${product.image}" class="product-image" alt="${product.name}"/>
+            <p class="title">${product.name}</p>
+            <p class="description model">${product.description}</p>
+            <p class="description">Precio: ${product.currency} ${product.cost}</p>
+            <p class="description">Vendidos: ${product.soldCount}</p>
+        `;
+
+        container.appendChild(productDiv);
+    });
+
+    let productImage = document.querySelectorAll('.product-image');
+    productImage.forEach(img => {
+        let imgSrc = img.getAttribute('src');
+
+        img.addEventListener('mouseover', () => {
+            let imgSrcSecond = imgSrc.split("_").shift() + "_2.jpg";
+            img.style.opacity = 0;
+
+            setTimeout(() => {
+                img.setAttribute("src", imgSrcSecond);
+                img.style.opacity = 1;
+            }, 200); 
+        });
+
+        img.addEventListener('mouseout', () => {
+            img.style.opacity = 0;
+
+            setTimeout(() => {
+                img.setAttribute("src", imgSrc);
+                img.style.opacity = 1;
+            }, 200); 
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', fetchProducts);
 
 document.getElementById("rangeFilterCount").addEventListener("click", function(){
     //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
@@ -96,7 +107,7 @@ document.getElementById("rangeFilterCount").addEventListener("click", function()
         maxPrice = undefined;
     }
 
-    dataOfCars();
+    showProducts(currentProductsArray);
 });
 document.getElementById("clearRangeFilter").addEventListener("click", function(){
     document.getElementById("rangeFilterPriceMin").value = "";
@@ -104,6 +115,37 @@ document.getElementById("clearRangeFilter").addEventListener("click", function()
 
     minPrice = undefined;
     maxPrice = undefined;
-    dataOfCars();
+    showProducts(currentProductsArray);
 });
 
+const sortProducts = (criteria, productsArray) => {
+    let result = [];
+    if (criteria === ORDER_ASC_BY_PRICE) {
+        result = productsArray.sort((a, b) => a.cost - b.cost);
+    } else if (criteria === ORDER_DESC_BY_PRICE) {
+        result = productsArray.sort((a, b) => b.cost - a.cost);
+    } else if (criteria === ORDER_DESC_BY_RELEVANCE) {
+        result = productsArray.sort((a, b) => b.soldCount - a.soldCount);
+    }
+    return result;
+}
+
+const sortAndShowProducts = (sortCriteria) => {
+    currentSortCriteria = sortCriteria;
+    currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
+    showProducts(currentProductsArray);
+}
+
+const dropdown = document.getElementById('sortOptions');
+
+dropdown.addEventListener('change', function(e) {
+    const selectedValue = e.target.value;
+
+    if (selectedValue === 'price-asc') {
+        sortAndShowProducts(ORDER_ASC_BY_PRICE);
+    } else if (selectedValue === 'price-desc') {
+        sortAndShowProducts(ORDER_DESC_BY_PRICE);
+    } else if (selectedValue === 'relevance') {
+        sortAndShowProducts(ORDER_DESC_BY_RELEVANCE);
+    }
+});
