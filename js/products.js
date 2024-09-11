@@ -61,7 +61,7 @@ const showProducts = (products) => {
         productDiv.style.cursor = "pointer";
         productDiv.addEventListener("click", () => {
           localStorage.setItem("product", JSON.stringify(product));
-          window.location.href = "/product-info.html";
+          window.location.href = "/e-commerce.github.io/product-info.html";
         });
     });
 
