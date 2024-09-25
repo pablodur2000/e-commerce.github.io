@@ -21,8 +21,9 @@ const productData = () => {
   sold.innerHTML = "Vendidos:" + " " + data.soldCount;
   images.forEach((img, index) => {
     const _number = index + 1;
-    img.src = `../e-commerce.github.io/img/prod${data.id}_${_number}.jpg`;
+    img.src = `../img/prod${data.id}_${_number}.jpg`;
   });
 };
 
 document.addEventListener("DOMContentLoaded", productData);
+//e-commerce.github.io/
