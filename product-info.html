@@ -16,30 +16,23 @@
 <body>
 
   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class=" navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-        </ul>
+  <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
+    <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
+    <ul>
+      <li class="space-x-5 text-xl">
+        <a href="index.html" class="hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
+        <a href="categories.html" class="hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
+        <a href="sell.html" class="hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
+        <a href="login.html" class="hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
+      </li>
+      <div class="sm:hidden space-y-1 hover:cursor-pointer">
+        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
       </div>
-    </div>
+    </ul>
   </nav>
+
   <main>
     <div class="container">
       
@@ -141,6 +134,18 @@
         </div>
       </div>
 
+
+      <div id="all-container-similar-products" class="container">
+        <h2>Descubrí productos similares!</h2>
+        <p id="p-similar-products">No hay ningún producto para mostrar.</p>
+        <div id="carContainer" class="car-container-product-info">
+
+
+        
+        </div>
+      </div>
+
+
     </div>
   </main>
 
@@ -160,7 +165,7 @@
   <div
     class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
     <div class="me-12 hidden lg:block">
-      <span>Get connected with us on social networks:</span>
+      <span>Buscanos en cualquiera de nuestras redes sociales!</span>
     </div>
     <!-- Social network icons container -->
     <div class="flex justify-center">
@@ -243,57 +248,54 @@
                 d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
             </svg>
           </span>
-          TW Elements
+          eMercado
         </h6>
-        <p>
-          Here you can use rows and columns to organize your footer
-          content. Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit.
+        <p id="footer-store-info-text">
+          Explora nuestra tienda online, donde encontrarás desde tecnología y moda hasta 
+          artículos para el hogar, todo con la mejor calidad y precios accesibles.
         </p>
       </div>
       <!-- Products section -->
       <div>
         <h6
           class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-          Products
+          Suscribite
         </h6>
-        <p class="mb-4">
-          <a href="#!">Angular</a>
-        </p>
-        <p class="mb-4">
-          <a href="#!">React</a>
-        </p>
-        <p class="mb-4">
-          <a href="#!">Vue</a>
-        </p>
-        <p>
-          <a href="#!">Laravel</a>
-        </p>
+
+        <div id="container-confirmed-suscription">Registrado correctamente. Muchas gracias!</div>
+
+        <p style="text-align: left;" id="p-newsletter">Ingresa tu email y recibe las últimas novedades, ofertas exclusivas y lanzamientos directamente en tu email.</p>
+
+        <form id="form-newsletter" action="">
+          <input id="input-newsletter" type="text">
+          <button id="newsletter-button">Enviar</button>
+        </form>
+
       </div>
       <!-- Useful links section -->
       <div>
         <h6
           class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-          Useful links
+          Categorias recomendadas
         </h6>
         <p class="mb-4">
-          <a href="#!">Pricing</a>
+          <a class="footer-a-categories" href="#!">Pricing</a>
         </p>
         <p class="mb-4">
-          <a href="#!">Settings</a>
+          <a class="footer-a-categories"  href="#!">Settings</a>
         </p>
         <p class="mb-4">
-          <a href="#!">Orders</a>
+          <a class="footer-a-categories" href="#!">Orders</a>
         </p>
         <p>
-          <a href="#!">Help</a>
+          <a class="footer-a-categories"  href="#!">Help</a>
         </p>
       </div>
       <!-- Contact section -->
       <div>
         <h6
           class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-          Contact
+          Contactanos:
         </h6>
         <p class="mb-4 flex items-center justify-center md:justify-start">
           <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
@@ -307,7 +309,7 @@
                 d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
             </svg>
           </span>
-          New York, NY 10012, US
+          Av. 18 de Julio 2260, 11200 Montevideo, Uruguay
         </p>
         <p class="mb-4 flex items-center justify-center md:justify-start">
           <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
@@ -321,7 +323,7 @@
                 d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
             </svg>
           </span>
-          info@example.com
+          contact@ecommerce.com
         </p>
         <p class="mb-4 flex items-center justify-center md:justify-start">
           <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
@@ -335,7 +337,7 @@
                 clip-rule="evenodd" />
             </svg>
           </span>
-          + 01 234 567 88
+          +598 99 39 05 62
         </p>
         <p class="flex items-center justify-center md:justify-start">
           <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
@@ -349,7 +351,7 @@
                 clip-rule="evenodd" />
             </svg>
           </span>
-          + 01 234 567 89
+          2945 6345
         </p>
       </div>
     </div>
@@ -359,7 +361,7 @@
   <div class="bg-black/5 p-6 text-center">
     <span>© 2023 Copyright:</span>
     <a class="font-semibold" href="https://tw-elements.com/"
-      >TW Elements</a
+      >eMercado</a
     >
   </div>
   </footer>
@@ -375,8 +377,10 @@
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/products.js"></script>
   <script src="js/product-info.js"></script>
   <script src="js/logged-user.js"></script>
+  <script src="js/footer.js"></script>
 </body>
 
 </html>

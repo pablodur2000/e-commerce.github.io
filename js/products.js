@@ -16,7 +16,7 @@ const fetchProducts = async () => {
         spiner.style.display = 'flex';
         const response = await fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryID}.json`);
 
-        if (!response.ok) {
+         if (!response.ok) {
             throw new Error('No hay respuesta: ' + response.statusText);
         }
 
@@ -36,6 +36,7 @@ const fetchProducts = async () => {
 const showProducts = (products) => {
     const container = document.getElementById('carContainer');
     container.innerHTML = '';
+    const currentProduct = JSON.parse(localStorage.getItem("product"));
 
     products.filter(product => {
         if (minPrice === undefined && maxPrice === undefined) {
@@ -57,7 +58,15 @@ const showProducts = (products) => {
             <p class="description">Vendidos: ${product.soldCount}</p>
         `;
 
-        container.appendChild(productDiv);
+        if (window.location.href.includes("/product-info.html")){   //if the current html is product-info do:
+            if (!(product.id == currentProduct.id)){                //check that the current product id and the product to append id are different 
+                document.getElementById("p-similar-products").innerHTML = '';
+                container.appendChild(productDiv);
+            }
+        }else{
+            container.appendChild(productDiv);
+        }
+
         productDiv.style.cursor = "pointer";
         productDiv.addEventListener("click", () => {
           localStorage.setItem("product", JSON.stringify(product));
