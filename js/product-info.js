@@ -13,15 +13,17 @@ const productData = () => {
   const product = localStorage.getItem("product");
 
   const data = JSON.parse(product);
+  console.log(data)
   nameProduct.innerHTML = data.name
   title.innerHTML = data.name;
   price.innerHTML = data.currency + " " + data.cost;
   descriptions.innerHTML = data.description;
-  sold.innerHTML = "Vendidos" + " " + data.soldCount;
+  sold.innerHTML = "Vendidos:" + " " + data.soldCount;
   images.forEach((img, index) => {
     const _number = index + 1;
-    img.src = `../e-commerce.github.io/img/prod${data.id}_${_number}.jpg`;
+    img.src = `../img/prod${data.id}_${_number}.jpg`;
   });
 };
 
 document.addEventListener("DOMContentLoaded", productData);
+//e-commerce.github.io/
