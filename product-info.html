@@ -115,27 +115,51 @@
                   <p id="descriptions" class="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
                 </div>
               </div>
-<!--       
-              <div class="mt-10">
-                <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-      
-                <div class="mt-4">
-                  <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-                    <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
-                    <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary colors</span></li>
-                    <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
-                    <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
-                  </ul>
+
+              <div class="lg:flex xl:flex">
+ 
+              <div class="mt-10 xl:flex xl:flex-col xl:items-start xl:w-1/2">
+                <h2 id="commentTitle"></h2>
+                <div class="rating xl:pt-2 xl:pb-2">
+                  <input value="5" name="rate" id="star5" type="radio">
+                  <label title="text" for="star5"></label>
+                  <input value="4" name="rate" id="star4" type="radio">
+                  <label title="text" for="star4"></label>
+                  <input value="3" name="rate" id="star3" type="radio" checked="">
+                  <label title="text" for="star3"></label>
+                  <input value="2" name="rate" id="star2" type="radio">
+                  <label title="text" for="star2"></label>
+                  <input value="1" name="rate" id="star1" type="radio">
+                  <label title="text" for="star1"></label>
+                </div>
+                <div class="w-full lg:h-full max-w-xs">
+            
+                  <form class="bg-white lg:h-full  shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                 
+                    <div class="mb-4">
+                      <label id="personComment" class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        
+                      </label>
+                      <textarea rows="8" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Comentario"></textarea>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Enviar comentario
+                      </button>
+                    </div>
+                  </form>
+        
                 </div>
               </div>
-      
-              <div class="mt-10">
-                <h2 class="text-sm font-medium text-gray-900">Details</h2>
-      
-                <div class="mt-4 space-y-6">
-                  <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
-                </div>
-              </div> -->
+              <div class="mt-10 xl:w-1/2">
+                <h2 class="text-sm font-medium text-gray-900">Comentarios</h2>
+                <ul id="listComment" role="list" class="divide-y divide-gray-100 overflow-y-auto" style="max-height: 300px;">
+               
+                </ul>
+            </div>
+            
+
+              </div>
             </div>
           </div>
         </div>
