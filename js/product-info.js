@@ -82,3 +82,4 @@ const productData = async () => {
 //../e-commerce.github.io
 
 document.addEventListener("DOMContentLoaded", productData);
+//e-commerce.github.io/
