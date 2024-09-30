@@ -66,7 +66,6 @@ const showProducts = (products) => {
         }else{
             container.appendChild(productDiv);
         }
-        console.log('window.location', window.location.hostname)
         productDiv.style.cursor = "pointer";
         productDiv.addEventListener("click", () => {
           localStorage.setItem("product", JSON.stringify(product));
