@@ -55,19 +55,16 @@ const productData = async () => {
     description.className = "mt-1 truncate text-xs leading-5 text-gray-500";
     description.textContent = comment.description;
 
-    // Crear contenedor para las estrellas
     const ratingDiv = document.createElement("div");
     ratingDiv.className = "rating xl:pt-2 xl:pb-2 flex";
 
-    // Generar las estrellas según el score
     for (let i = 1; i <= 5; i++) {
       const star = document.createElement("span");
       star.className = i <= comment.score ? "text-yellow-500" : "text-gray-300";
-      star.textContent = "★"; // Estrella llena
+      star.textContent = "★"; 
       ratingDiv.appendChild(star);
     }
 
-    // Añadir el nombre, la descripción y las estrellas al contenedor de información
     divInfo.appendChild(name);
     divInfo.appendChild(description);
     divInfo.appendChild(ratingDiv);
