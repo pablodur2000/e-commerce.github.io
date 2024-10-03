@@ -35,8 +35,9 @@ const productData = async () => {
   }
 
   const dataOfComments = await response.json();
-  commentTitle.innerHTML = "Dejaras el comentario como: " + localStorage.getItem('user')
-  dataOfComments.forEach(comment => {
+  commentTitle.innerHTML =
+    "Dejaras el comentario como:" + localStorage.getItem("user");
+  dataOfComments.forEach((comment) => {
     const li = document.createElement("li");
     li.className = "flex justify-between gap-x-6 py-5";
 
@@ -45,38 +46,150 @@ const productData = async () => {
 
     const divInfo = document.createElement("div");
     divInfo.className = "min-w-0 flex-auto";
-    
+
     const name = document.createElement("p");
     name.className = "text-sm font-semibold leading-6 text-gray-900";
     name.textContent = comment.user;
 
     const description = document.createElement("p");
     description.className = "mt-1 truncate text-xs leading-5 text-gray-500";
-    name.textContent = comment.description;
+    description.textContent = comment.description;
+
+    const ratingDiv = document.createElement("div");
+    ratingDiv.className = "rating xl:pt-2 xl:pb-2 flex";
+
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement("span");
+      star.className = i <= comment.score ? "text-yellow-500" : "text-gray-300";
+      star.textContent = "★"; 
+      ratingDiv.appendChild(star);
+    }
 
     divInfo.appendChild(name);
     divInfo.appendChild(description);
+    divInfo.appendChild(ratingDiv);
     divDetails.appendChild(divInfo);
-    
+
     const divExtra = document.createElement("div");
     divExtra.className = "hidden shrink-0 sm:flex sm:flex-col sm:items-end";
 
     const user = document.createElement("p");
     user.className = "text-sm leading-6 text-gray-900";
-    user.textContent = comment.user; 
+    user.textContent = comment.user;
 
     const timeInfo = document.createElement("p");
     timeInfo.className = "mt-1 text-xs leading-5 text-gray-500";
-    timeInfo.innerHTML = `Fecha <time datetime="${comment.dateTime}">${new Date(comment.dateTime).toLocaleDateString()}</time>`; 
+    timeInfo.innerHTML = `Fecha <time datetime="${comment.dateTime}">${new Date(
+      comment.dateTime
+    ).toLocaleDateString()}</time>`;
 
     divExtra.appendChild(user);
     divExtra.appendChild(timeInfo);
     li.appendChild(divDetails);
     li.appendChild(divExtra);
-    
-    listComment.appendChild(li); 
-});
 
+    listComment.appendChild(li);
+  });
+
+  function generateVisualStars(rating) {
+    const divStars = document.createElement("div");
+    divStars.className = "rating xl:pt-2 xl:pb-2";
+    divStars.id = "visualRating";
+
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement("span");
+      star.className = "star-visual";
+      if (i <= rating) {
+        star.classList.add("filled");
+      }
+      divStars.appendChild(star);
+    }
+    return divStars;
+  }
+
+  function addNewComment(comment) {
+    const li = document.createElement("li");
+    li.className = "flex justify-between gap-x-6 py-5";
+
+    const divDetails = document.createElement("div");
+    divDetails.className = "flex min-w-0 gap-x-4";
+
+    const divInfo = document.createElement("div");
+    divInfo.className = "min-w-0 flex-auto";
+
+    const stars = generateVisualStars(comment.rating);
+
+    divInfo.appendChild(stars);
+
+    const description = document.createElement("p");
+    description.className = "text-sm font-semibold leading-6 text-gray-900";
+    description.textContent = comment.description;
+
+    divInfo.appendChild(description);
+    divDetails.appendChild(divInfo);
+
+    const divExtra = document.createElement("div");
+    divExtra.className = "hidden shrink-0 sm:flex sm:flex-col sm:items-end";
+
+    const user = document.createElement("p");
+    user.className = "text-sm leading-6 text-gray-900";
+    user.textContent = comment.user;
+
+    const timeInfo = document.createElement("p");
+    timeInfo.className = "mt-1 text-xs leading-5 text-gray-500";
+    timeInfo.innerHTML = `Fecha <time datetime="${comment.dateTime}">${new Date(
+      comment.dateTime
+    ).toLocaleDateString()}</time>`;
+
+    divExtra.appendChild(user);
+    divExtra.appendChild(timeInfo);
+    li.appendChild(divDetails);
+    li.appendChild(divExtra);
+
+    listComment.prepend(li);
+  }
+
+  document
+    .getElementById("submitComment")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      const inputComment = document.getElementById("inputComment").value;
+      const radioButtons = document.querySelectorAll('input[name="rate"]');
+      const stars = document.querySelectorAll("#visualRating .star-visual");
+      let rankingSeleccionado = null;
+
+      radioButtons.forEach((radio) => {
+        if (radio.checked) {
+          rankingSeleccionado = radio.value;
+        }
+      });
+
+      if (rankingSeleccionado) {
+        stars.forEach((star, index) => {
+          if (index < parseInt(rankingSeleccionado)) {
+            star.classList.add("filled");
+          } else {
+            star.classList.remove("filled");
+          }
+        });
+      } else {
+        alert("Por favor selecciona una calificación.");
+      }
+      if (inputComment.trim() === "") {
+        alert("Por favor, escribe un comentario antes de enviar.");
+        return;
+      }
+
+      const newComment = {
+        user: localStorage.getItem("user") || "Usuario Anónimo",
+        description: inputComment,
+        dateTime: new Date().toISOString(),
+        rating: rankingSeleccionado,
+      };
+      addNewComment(newComment);
+
+      document.getElementById("inputComment").value = "";
+    });
 };
 
 //../e-commerce.github.io

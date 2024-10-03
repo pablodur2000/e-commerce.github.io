@@ -266,6 +266,62 @@ a.custom-card:hover {
   padding: 20px 0 80px 0;
 }
 
+/* interaction stars */
+.rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 30px;
+  color: #666;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ff9e0b;
+}
+
+.rating > input:checked ~ label {
+  color: #ffa723;
+}
+
+/* visual stars */
+#visualRating {
+  display: inline-block;
+  direction: rtl;
+  font-size: 30px;
+}
+
+#visualRating .star-visual {
+  float: left;
+  color: #666;
+  pointer-events: none;
+  font-size: 20px;
+}
+
+#visualRating .star-visual:before {
+  content: '★';
+}
+
+#visualRating .filled {
+  color: #ffa723;
+}
+
 /*------------------------------------------------------- footer -------------------------------------------------------*/
 #all-container-similar-products{
   border-top: 1px solid rgba(0, 0, 0, 0.199);

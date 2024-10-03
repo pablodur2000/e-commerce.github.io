@@ -66,11 +66,14 @@ const showProducts = (products) => {
         }else{
             container.appendChild(productDiv);
         }
-
         productDiv.style.cursor = "pointer";
         productDiv.addEventListener("click", () => {
           localStorage.setItem("product", JSON.stringify(product));
-          window.location.href = "/product-info.html";
+          if (window.location.hostname !== 'pablodur2000.github.io'){
+              window.location.href = "/product-info.html";
+        } else {
+              window.location.href = "/e-commerce.github.io/product-info.html";
+          }
         });
     });
 
