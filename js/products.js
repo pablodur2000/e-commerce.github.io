@@ -34,9 +34,9 @@ const fetchProducts = async () => {
 }
 
 const showProducts = (products) => {
-    const container = document.getElementById('carContainer');
+    const container = document.getElementById('products-container');
     container.innerHTML = '';
-    const currentProduct = JSON.parse(localStorage.getItem("product"));
+    const currentProduct = JSON.parse(localStorage.getItem("product"));   //Current product from local storage
 
     products.filter(product => {
         if (minPrice === undefined && maxPrice === undefined) {
@@ -64,8 +64,9 @@ const showProducts = (products) => {
                 container.appendChild(productDiv);
             }
         }else{
-            container.appendChild(productDiv);
+            container.appendChild(productDiv);                      //if the current html is products.html, add the products without filter
         }
+
         productDiv.style.cursor = "pointer";
         productDiv.addEventListener("click", () => {
           localStorage.setItem("product", JSON.stringify(product));
