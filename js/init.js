@@ -39,3 +39,42 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+
+//--------------------------------------------------MENU
+const menuButton = document.querySelector('.menu-button');
+
+window.addEventListener('resize', () => {
+    chequeoVentana();
+});
+
+const chequeoVentana = () =>{
+  const li = document.querySelector('.li')
+  let liA = document.querySelectorAll('.li-a')
+
+  if(window.innerWidth > 639){
+    li.classList.remove("li-aplicated");
+    liA.forEach(e =>{
+      e.classList.remove("li-a-aplicated");
+    })
+  }else if (window.innerWidth < 639){
+    liA.forEach(e =>{
+      if (e.classList.contains("hidden")){
+        e.classList.add("hidden");
+      }
+    })
+  }
+}
+
+menuButton.addEventListener('click', () =>{
+
+  const li = document.querySelector('.li')
+  let liA = document.querySelectorAll('.li-a')
+
+  li.classList.toggle("li-aplicated");
+  liA.forEach(e =>{
+    e.classList.toggle("hidden");
+    e.classList.toggle("li-a-aplicated");
+  })
+  
+})
