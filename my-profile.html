@@ -7,7 +7,8 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/profile.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -23,41 +24,149 @@
         font-size: 3.5rem;
       }
     }
+
+    /* Cambiando el fondo del body a blanco y ajustando colores */
+    body {
+      background-color: #ffffff;
+      color: #333333; /* Texto oscuro para contraste */
+    }
+
+    .navbar {
+      background-color: #343a40 !important; /* Mantiene el navbar oscuro */
+    }
+
+    footer {
+      background-color: #f8f9fa;
+      color: #333333;
+    }
+
+    .nav-link {
+      color: #ffffff !important; /* Enlace del navbar en blanco */
+    }
+
+    /* Ajuste del sidebar y contenido principal */
+    .bg-gray-900 {
+      background-color: #ffffff !important; /* Cambiar el fondo del sidebar a blanco */
+    }
+
+    .bg-gray-800 {
+      background-color: #ffffff !important; /* Cambiar el fondo de los formularios a blanco */
+    }
+
+    .text-gray-400 {
+      color: #333333 !important; /* Cambiar el color del texto a oscuro */
+    }
+
+    .text-white {
+      color: #333333 !important; /* Texto en oscuro */
+    }
+
+    .hover\:text-white:hover {
+      color: #555555 !important; /* Cambia el hover a gris más oscuro */
+    }
+
+    .border-gray-700 {
+      border-color: #dddddd !important; /* Bordes grises claros */
+    }
+
+    .hover\:bg-gray-600:hover {
+      background-color: #e9ecef !important; /* Hover en gris claro */
+    }
+
+    .bg-indigo-500 {
+      background-color: #007bff !important; /* Botón azul similar a Bootstrap */
+    }
+
+    .hover\:bg-indigo-600:hover {
+      background-color: #0056b3 !important; /* Hover en azul más oscuro */
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-        </ul>
+  <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
+    <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
+    <ul id="ul-id">
+      <li class="li space-x-5 text-xl">
+        <a href="index.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
+        <a href="categories.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
+        <a href="sell.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
+        <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
+      </li>
+      <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
+        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
       </div>
-    </div>
+    </ul>
   </nav>
+
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="flex min-h-screen">
+        
+        <!-- Main Content -->
+        <div class="flex-1 p-8 bg-white text-dark">
+          <!-- Tabs -->
+          <div class="border-b border-gray-300 mb-6">
+            <nav class="-mb-px flex space-x-8">
+              <a href="#" class="text-dark border-b-2 border-primary px-1 pb-2">Account</a>
+            </nav>
+          </div>
+          
+          <!-- Personal Information Form -->
+          <div class="space-y-6">
+            <div>
+              <h2 class="text-lg font-medium text-dark">Personal Information</h2>
+              <p class="text-sm text-muted">Use a permanent address where you can receive mail.</p>
+            </div>
+            <div class="flex items-center">
+              <img src="https://via.placeholder.com/100" alt="User Avatar" class="rounded-full">
+              <button class="ml-4 bg-light text-dark px-4 py-2 rounded hover:bg-gray-600">Change Avatar</button>
+            </div>
+            <form action="#" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="first-name" class="block text-sm font-medium text-dark">Nombre</label>
+                  <input type="text" id="first-name" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                  <label for="second-name" class="block text-sm font-medium text-dark">Segundo Nombre</label>
+                  <input type="text" id="second-name" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                  <label for="last-name" class="block text-sm font-medium text-dark">Apellido</label>
+                  <input type="text" id="last-name" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                  <label for="second-lastname" class="block text-sm font-medium text-dark">Segundo apellido</label>
+                  <input type="text" id="second-lastname" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-dark">Email</label>
+                <input type="email" id="email" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+              </div>
+              <div>
+                <label for="tel" class="block text-sm font-medium text-dark">Telefono</label>
+                <input type="tel" id="tel" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+              </div>
+             <!-- ui-switch -->
+              <label class="ui-switch">
+                <input type="checkbox">
+                <div class="slider">
+                  <div class="circle"></div>
+                </div>
+              </label>
+            </form>
+            <button class="mt-6 bg-blue-900 text-gray-50 px-6 py-2 rounded-md hover:bg-primary-dark">Guardar cambios</button>
+          </div>
+        </div>
       </div>
+
     </div>
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -66,6 +175,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+  
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
