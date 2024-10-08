@@ -9,78 +9,6 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/profile.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-
-    /* Cambiando el fondo del body a blanco y ajustando colores */
-    body {
-      background-color: #ffffff;
-      color: #333333; /* Texto oscuro para contraste */
-    }
-
-    .navbar {
-      background-color: #343a40 !important; /* Mantiene el navbar oscuro */
-    }
-
-    footer {
-      background-color: #f8f9fa;
-      color: #333333;
-    }
-
-    .nav-link {
-      color: #ffffff !important; /* Enlace del navbar en blanco */
-    }
-
-    /* Ajuste del sidebar y contenido principal */
-    .bg-gray-900 {
-      background-color: #ffffff !important; /* Cambiar el fondo del sidebar a blanco */
-    }
-
-    .bg-gray-800 {
-      background-color: #ffffff !important; /* Cambiar el fondo de los formularios a blanco */
-    }
-
-    .text-gray-400 {
-      color: #333333 !important; /* Cambiar el color del texto a oscuro */
-    }
-
-    .text-white {
-      color: #333333 !important; /* Texto en oscuro */
-    }
-
-    .hover\:text-white:hover {
-      color: #555555 !important; /* Cambia el hover a gris más oscuro */
-    }
-
-    .border-gray-700 {
-      border-color: #dddddd !important; /* Bordes grises claros */
-    }
-
-    .hover\:bg-gray-600:hover {
-      background-color: #e9ecef !important; /* Hover en gris claro */
-    }
-
-    .bg-indigo-500 {
-      background-color: #007bff !important; /* Botón azul similar a Bootstrap */
-    }
-
-    .hover\:bg-indigo-600:hover {
-      background-color: #0056b3 !important; /* Hover en azul más oscuro */
-    }
-  </style>
 </head>
 
 <body>
@@ -105,16 +33,16 @@
     <div class="container">
       <div class="flex min-h-screen">
         
-        <!-- Main Content -->
+        
         <div class="flex-1 p-8 bg-white text-dark">
-          <!-- Tabs -->
+         
           <div class="border-b border-gray-300 mb-6">
             <nav class="-mb-px flex space-x-8">
               <a href="#" class="text-dark border-b-2 border-primary px-1 pb-2">Account</a>
             </nav>
           </div>
           
-          <!-- Personal Information Form -->
+         
           <div class="space-y-6">
             <div>
               <h2 class="text-lg font-medium text-dark">Personal Information</h2>
@@ -125,29 +53,29 @@
               <button class="ml-4 bg-light text-dark px-4 py-2 rounded hover:bg-gray-600">Change Avatar</button>
             </div>
             <form action="#" class="space-y-4">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+              <div class="grid grid-cols-1 gap-2">
+                <div class="w-6/12">
                   <label for="first-name" class="block text-sm font-medium text-dark">Nombre</label>
                   <input type="text" id="first-name" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
                 </div>
-                <div>
+                <div class="w-6/12">
                   <label for="second-name" class="block text-sm font-medium text-dark">Segundo Nombre</label>
                   <input type="text" id="second-name" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
                 </div>
-                <div>
+                <div class="w-6/12">
                   <label for="last-name" class="block text-sm font-medium text-dark">Apellido</label>
                   <input type="text" id="last-name" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
                 </div>
-                <div>
+                <div class="w-6/12">
                   <label for="second-lastname" class="block text-sm font-medium text-dark">Segundo apellido</label>
                   <input type="text" id="second-lastname" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
                 </div>
               </div>
-              <div>
+              <div class="w-6/12">
                 <label for="email" class="block text-sm font-medium text-dark">Email</label>
                 <input type="email" id="email" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
               </div>
-              <div>
+              <div class="w-6/12">
                 <label for="tel" class="block text-sm font-medium text-dark">Telefono</label>
                 <input type="tel" id="tel" class="mt-1 block w-full bg-white text-dark border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
               </div>
