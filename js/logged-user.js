@@ -1,4 +1,4 @@
-const navItemLogin = document.querySelectorAll('.nav-link');
+const navItemLogin = document.querySelectorAll('.li-a');
 const user = localStorage.getItem("user");
 
 if (!user){
