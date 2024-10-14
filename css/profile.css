@@ -149,3 +149,29 @@
   .hover\:bg-indigo-600:hover {
     background-color: #0056b3 !important;
   }
+
+  #profilePhoto {
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    margin-bottom: 15px;
+  }
+
+#fileInput {
+  background-color: #007bff; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease;
+}
+
+#fileInput:hover {
+  background-color: #000000; 
+}
+
+#fileInput:active {
+  background-color: #003f7f; 
+}
