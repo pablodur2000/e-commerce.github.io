@@ -175,3 +175,6 @@
 #fileInput:active {
   background-color: #003f7f; 
 }
+  .required span {
+    color: red;
+  }
