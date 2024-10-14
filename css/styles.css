@@ -14,6 +14,53 @@ nav a {
 }
 
 /* ----------------------------------------------NAV-------------------------------------- */
+#login-item-container{
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+#login-item-container:hover .img-arrow-menu{
+  transform: rotate(360deg);
+}
+
+.img-arrow-menu{
+  height: 18px;
+  transition: all 500ms ease;
+  display: none;
+}
+
+#hidden-user-menu{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+  transform: translateY(110px);
+  right: 0;
+  padding: 15px;
+  width: 160px;
+  transition: all 200ms ease;
+}
+
+#hidden-user-menu a{
+  margin: 5px 0;
+}
+
+@media (max-width: 639px) {
+  #hidden-user-menu {
+    transform: translateY(100px);
+    right: -30px;
+    height: 140px;
+    gap: 2px;
+  }
+}
+
 .ul-class{
   position: relative !important;
 }
@@ -38,9 +85,22 @@ nav a {
   margin-left: 0 !important;
 }
 
+.li-a{
+  transition: all 200ms ease;
+  margin: 0 10px;
+}
+
+.li-a:hover{
+  transform: scale(1.08);
+} 
+
 .li{
   z-index: 10000;
+  right: -90px;
 }
+
+
+
 /* ---------------------------------------------*/
 .bd-placeholder-img {
   font-size: 1.125rem;
