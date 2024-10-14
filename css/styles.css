@@ -13,6 +13,95 @@ nav a {
   text-decoration: none;
 }
 
+/* ----------------------------------------------NAV-------------------------------------- */
+#login-item-container{
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+#login-item-container:hover .img-arrow-menu{
+  transform: rotate(360deg);
+}
+
+.img-arrow-menu{
+  height: 18px;
+  transition: all 500ms ease;
+  display: none;
+}
+
+#hidden-user-menu{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+  transform: translateY(110px);
+  right: 0;
+  padding: 15px;
+  width: 160px;
+  transition: all 200ms ease;
+}
+
+#hidden-user-menu a{
+  margin: 5px 0;
+}
+
+@media (max-width: 639px) {
+  #hidden-user-menu {
+    transform: translateY(100px);
+    right: -30px;
+    height: 140px;
+    gap: 2px;
+  }
+}
+
+.ul-class{
+  position: relative !important;
+}
+
+#ul-id{
+  position: relative !important;
+}
+
+.li-aplicated{
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  align-items: center !important;
+  flex-direction: column !important;
+  height: auto !important;
+  padding: 20px;
+  transform: translate(-80px, 50px);
+}
+
+.li-a-aplicated{
+  margin-left: 0 !important;
+}
+
+.li-a{
+  transition: all 200ms ease;
+  margin: 0 10px;
+}
+
+.li-a:hover{
+  transform: scale(1.08);
+} 
+
+.li{
+  z-index: 10000;
+  right: -90px;
+}
+
+
+
+/* ---------------------------------------------*/
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -189,7 +278,7 @@ a.custom-card:hover {
   color: orange;
 }
 
-#carContainer{
+#products-container{
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
@@ -321,6 +410,26 @@ a.custom-card:hover {
 #visualRating .filled {
   color: #ffa723;
 }
+
+
+
+
+.li-commentary{
+  margin: 10px 0;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 7px;
+}
+
+
+.comments-all-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+
 
 /*------------------------------------------------------- footer -------------------------------------------------------*/
 #all-container-similar-products{
