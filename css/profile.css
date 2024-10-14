@@ -149,3 +149,6 @@
   .hover\:bg-indigo-600:hover {
     background-color: #0056b3 !important;
   }
+  .required span {
+    color: red;
+  }
