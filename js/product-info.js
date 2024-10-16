@@ -24,7 +24,7 @@ const productData = async () => {
   sold.innerHTML = "Vendidos:" + " " + data.soldCount;
   images.forEach((img, index) => {
     const _number = index + 1;
-    img.src = `/img/prod${data.id}_${_number}.jpg`;
+    img.src = `/e-commerce.github.io/img/prod${data.id}_${_number}.jpg`;
   });
 
   const response = await fetch(
