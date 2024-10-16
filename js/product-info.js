@@ -9,6 +9,7 @@ const img1 = document.getElementById("img1");
 const img2 = document.getElementById("img2");
 const img3 = document.getElementById("img3");
 const img4 = document.getElementById("img4");
+const main = document.getElementById("main");
 const images = [img1, img2, img3, img4];
 
 const productData = async () => {
@@ -58,10 +59,9 @@ const productData = async () => {
   }
 
   function addNewComment(comment) {
-
     const li = document.createElement("li");
     li.className = "li-commentary flex justify-between gap-x-6 py-1";
-    li.style.backgroundColor = '#e9e9e9';
+    li.style.backgroundColor = "#e9e9e9";
 
     const divDetails = document.createElement("div");
     divDetails.className = "flex min-w-0 gap-x-4";
@@ -85,18 +85,17 @@ const productData = async () => {
       star.className = i <= comment.score ? "text-yellow-500" : "text-gray-300";
 
       const ratingLocal = localStorage.getItem("rating");
-      if (ratingLocal){
-        console.log(ratingLocal)
+      if (ratingLocal) {
+        console.log(ratingLocal);
         star.className = i <= ratingLocal ? "text-yellow-500" : "text-gray-300";
-      }else{
-
+      } else {
       }
-      
-      star.textContent = "★"; 
+
+      star.textContent = "★";
       ratingDiv.appendChild(star);
     }
 
-    divInfo.appendChild(name)
+    divInfo.appendChild(name);
     divInfo.appendChild(description);
     divInfo.appendChild(ratingDiv);
     divDetails.appendChild(divInfo);
@@ -120,11 +119,9 @@ const productData = async () => {
     li.appendChild(divExtra);
 
     listComment.appendChild(li);
-
-
   }
 
-/*
+  /*
   function addNewComment(comment) {
     const li = document.createElement("li");
     li.className = "li-commentary flex justify-between gap-x-6";
@@ -218,13 +215,55 @@ const productData = async () => {
 document.addEventListener("DOMContentLoaded", productData);
 //e-commerce.github.io/
 
-const rateInputs = document.querySelectorAll('.rate-input');
+const rateInputs = document.querySelectorAll(".rate-input");
 
-  // Agregamos un event listener a cada uno
-  rateInputs.forEach(input => {
-    input.addEventListener('change', (event) => {
-      // Guardamos el valor seleccionado en localStorage
-      localStorage.setItem('rating', event.target.value);
-      console.log(`Rating guardado: ${event.target.value}`);
-    });
+// Agregamos un event listener a cada uno
+rateInputs.forEach((input) => {
+  input.addEventListener("change", (event) => {
+    // Guardamos el valor seleccionado en localStorage
+    localStorage.setItem("rating", event.target.value);
+    console.log(`Rating guardado: ${event.target.value}`);
   });
+});
+
+/**ACTIVAR DESACTIVAR DARK MODE */
+
+const toggleSwitch = document.querySelector(".checkbox");
+const mainElement = document.getElementById("main");
+const textElements = document.querySelectorAll(
+  "p:not(footer p), h1:not(footer h1), h2:not(footer h2), h3:not(footer h3), h4:not(footer h4), h5:not(footer h5), h6:not(footer h6), span:not(footer span), small:not(footer small), a:not(footer a)"
+);
+
+function enableDarkMode() {
+  mainElement.style.backgroundColor = "#2b2b2b";
+  textElements.forEach(function (element) {
+    element.style.color = "white";
+  });
+  localStorage.setItem("darkMode", "enabled");
+}
+
+function disableDarkMode() {
+  mainElement.style.backgroundColor = "white";
+  textElements.forEach(function (element) {
+    element.style.color = "#2b2b2b";
+  });
+  localStorage.setItem("darkMode", "disabled");
+}
+
+const darkMode = localStorage.getItem("darkMode");
+
+if (darkMode === "enabled") {
+  toggleSwitch.checked = true;
+  enableDarkMode();
+} else {
+  toggleSwitch.checked = false;
+  disableDarkMode();
+}
+
+toggleSwitch.addEventListener("change", function () {
+  if (this.checked) {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
