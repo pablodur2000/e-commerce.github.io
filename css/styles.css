@@ -421,12 +421,42 @@ a.custom-card:hover {
   border-radius: 7px;
 }
 
+#listComment{
+  padding-right: 15px;
+}
+
 
 .comments-all-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 15px;
+}
+
+
+.product-details-inter-divs{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+
+}
+
+.product-details-imgs{
+  width: 30px;
+  margin-right: 12px;
+}
+
+#pagos-img{
+  height: 45px;
+  margin-left: 10px;
+}
+
+#input-quantity{
+  padding: 5px;
+  background-color: rgb(99 102 241);
+  color: white;
+  margin-left: 10px;
+  border-radius: 5px;
 }
 
 

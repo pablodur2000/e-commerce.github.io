@@ -12,6 +12,8 @@ const img4 = document.getElementById("img4");
 const main = document.getElementById("main");
 const images = [img1, img2, img3, img4];
 
+
+
 const productData = async () => {
   const product = localStorage.getItem("product");
 
@@ -233,8 +235,17 @@ const mainElement = document.getElementById("main");
 const textElements = document.querySelectorAll(
   "p:not(footer p), h1:not(footer h1), h2:not(footer h2), h3:not(footer h3), h4:not(footer h4), h5:not(footer h5), h6:not(footer h6), span:not(footer span), small:not(footer small), a:not(footer a)"
 );
+const imgsProductsDetails = document.querySelectorAll('.product-details-imgs');
 
+ 
 function enableDarkMode() {
+  const similarProductsP = document.querySelectorAll('.productCar p');
+  imgsProductsDetails.forEach(img => {
+    img.style.filter = "invert()";
+  });
+  similarProductsP.forEach(p => {
+    p.style.color = "white";
+  })
   mainElement.style.backgroundColor = "#2b2b2b";
   textElements.forEach(function (element) {
     element.style.color = "white";
@@ -243,6 +254,13 @@ function enableDarkMode() {
 }
 
 function disableDarkMode() {
+  const similarProductsP = document.querySelectorAll('.productCar p');
+  imgsProductsDetails.forEach(img => {
+    img.style.filter = "none";
+  });
+  similarProductsP.forEach(p => {
+    p.style.color = "black";
+  });
   mainElement.style.backgroundColor = "white";
   textElements.forEach(function (element) {
     element.style.color = "#2b2b2b";
@@ -266,4 +284,32 @@ toggleSwitch.addEventListener("change", function () {
   } else {
     disableDarkMode();
   }
+});
+
+
+//-------------------------------------------------------------------------------------------BUY AND ADD TO CART
+const buttonsBuy = document.querySelectorAll('.buttons-buy');
+
+buttonsBuy.forEach(button => {
+  button.addEventListener('click', () =>{
+    let product = JSON.parse(localStorage.getItem("product"));
+    let cart = JSON.parse(localStorage.getItem("cart"));
+  
+    const productCountBuy = document.getElementById("input-quantity").value;
+
+    product.productCountBuy = parseInt(productCountBuy);
+
+    if(!cart){
+      cart = [product];
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }else{
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+    
+
+    if(!button.classList.contains("add-to-cart")){
+      window.location.href = "/cart.html"
+    }
+  });
 });

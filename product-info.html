@@ -109,13 +109,42 @@
             <!-- Options -->
             <div class="mt-4 lg:row-span-3 lg:mt-0">
               <h2 class="sr-only">Product information</h2>
-              <p id="price" class="text-3xl tracking-tight text-gray-900">USD 192</p>
-            
-              <p id="sold" class="text-2xl tracking-tight text-gray-900">Vendidos: 12</p>
-            
+              
+              <div id="product-details-container">
+                <p id="price" class="text-3xl tracking-tight text-gray-900">USD 192</p>
+                <p id="sold" class="text-2xl tracking-tight text-gray-900">Vendidos: 12</p>
+
+                <div class="product-details-inter-divs">
+                  <img src="img/icon-warranty.svg" alt="" class="product-details-imgs">
+                  <p>Este producto tiene <span style="color: blue !important; text-decoration: underline; cursor: pointer;" >Garantía de Entrega</span></p>
+                </div>
+
+                <div class="product-details-inter-divs">
+                  <img src="img/icon-return.svg" alt="" class="product-details-imgs">
+                  <p><strong>14</strong> días para devoluciones. El comprador paga el envío de la decolución.</p>
+                </div>
+
+                <div class="product-details-inter-divs">
+                  <p>Pagos: </p>
+                  <img id="pagos-img" src="img/pagos.png" alt="">
+                </div>
+
+                <div class="product-details-inter-divs">
+                  <p>Cantidad: </p>
+                  <input id="input-quantity" type="number" min="1" max="20" value="1">
+                </div>
+              </div>
+              
+              
       
-                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Añadir al carrito</button>
-              </form>
+              <button type="submit" class="buttons-buy buy transition duration-300 mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Comprar
+              </button>
+              <button type="submit" class="buttons-buy add-to-cart transition duration-300 mt-3 flex w-full items-center justify-center rounded-md border border-transparent bg-slate-600 px-8 py-3 text-base font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Añadir al carrito
+              </button>
+              
+            </form>
             </div>
       
             <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
@@ -146,7 +175,7 @@
                 </div>
                 <div class="w-full lg:h-full max-w-xs">
             
-                  <form class="bg-white lg:h-full  shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                  <form class=" lg:h-full  shadow-md rounded px-8 pt-6 pb-8 mb-4">
                  
                     <div class="mb-4">
                       <label id="personComment" class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -155,7 +184,7 @@
                       <textarea rows="8" id="inputComment" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Comentario"></textarea>
                     </div>
                     <div class="flex items-center justify-between">
-                      <button id="submitComment" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                      <button id="submitComment" class="bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                         Enviar comentario
                       </button>
                     </div>
