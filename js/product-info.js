@@ -289,27 +289,47 @@ toggleSwitch.addEventListener("change", function () {
 
 //-------------------------------------------------------------------------------------------BUY AND ADD TO CART
 const buttonsBuy = document.querySelectorAll('.buttons-buy');
+const productAddedText = document.getElementById("product-added-h4");
+const successBuyContainer = document.getElementById("success-buy-container");
+const successBuyImg = document.getElementById("success-buy-img");
 
 buttonsBuy.forEach(button => {
   button.addEventListener('click', () =>{
     let product = JSON.parse(localStorage.getItem("product"));
     let cart = JSON.parse(localStorage.getItem("cart"));
+    const buttonText = button.innerHTML;
   
     const productCountBuy = document.getElementById("input-quantity").value;
 
     product.productCountBuy = parseInt(productCountBuy);
 
-    if(!cart){
-      cart = [product];
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }else{
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-    
+    button.innerHTML = `<img src="img/spinner-gif.webp" style="height: 30px;" alt="">`;
 
-    if(!button.classList.contains("add-to-cart")){
-      window.location.href = "/cart.html"
-    }
+    setTimeout(() => {
+      if(!cart){
+        cart = [product];
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }else{
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+  
+        //--------------------------------------------------------------------------------Animation button spinner and product added success
+        const añadidoConOSinS = product.productCountBuy > 1 ? "productos añadidos" : "producto añadido";
+        productAddedText.innerHTML = `${productCountBuy} ${añadidoConOSinS} al carrito`;
+        productAddedText.style.color = "rgba(0, 0, 0, 0.552)";
+        successBuyContainer.style.display = "flex";
+        setTimeout(() => {
+          successBuyImg.style.transform = "scale(1)";
+        }, 50);
+        //--------------------------------------------------------------------------------
+      }
+      button.innerHTML = buttonText;
+
+      if(!button.classList.contains("add-to-cart")){
+        window.location.href = "/cart.html"
+      }
+    }, 1200); 
+    
   });
 });
+

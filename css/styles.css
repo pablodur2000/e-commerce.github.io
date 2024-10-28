@@ -459,6 +459,25 @@ a.custom-card:hover {
   border-radius: 5px;
 }
 
+#success-buy-container{
+  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+#success-buy-container h4{
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.452);
+}
+
+#success-buy-container img{
+  height: 40px;
+  transform: scale(6);
+  transition: all 400ms ease;
+}
+
 
 
 /*------------------------------------------------------- footer -------------------------------------------------------*/
