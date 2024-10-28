@@ -18,11 +18,19 @@
   <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
     <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
     <ul id="ul-id">
-      <li class="li space-x-5 text-xl">
+      <li id="li-id" class="li text-xl">
         <a href="index.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
         <a href="categories.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
         <a href="sell.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
-        <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
+        <div class="sm:inline-block text-white hover:text-indigo-700" id="login-item-container">
+          <a id="login-a" href="" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
+          <img id="img-arrow-menu-id" class="img-arrow-menu" src="img/arrow-down.png" alt="">
+          <div id="hidden-user-menu">
+              <a href="cart.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi carrito</a>
+              <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi perfil</a>
+              <a href="" id="close-session-a" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Cerrar sesión</a>
+          </div>
+        </div>
       </li>
       <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
         <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
