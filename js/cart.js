@@ -48,7 +48,7 @@ function renderCart() {
                     <div class="flex items-center ml-4">
                         <button class="quantity-btn bg-gray-200 px-2 py-1 rounded-l-lg" onclick="updateQuantity(${index}, ${
         item.productCountBuy - 1
-      })" ${item.productCountBuy <= 1 ? "disabled" : ""}>-</button>
+      })" ${item.productCountBuy}>-</button>
                         <span class="px-4">${item.productCountBuy}</span>
                         <button class="quantity-btn bg-gray-200 px-2 py-1 rounded-r-lg" onclick="updateQuantity(${index}, ${
         item.productCountBuy + 1
