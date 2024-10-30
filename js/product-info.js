@@ -315,11 +315,13 @@ buttonsBuy.forEach((button) => {
             ? "productos añadidos"
             : "producto añadido";
         productAddedText.innerHTML = `${productCountBuy} ${añadidoConOSinS} al carrito`;
+        updateCartCount()
         productAddedText.style.color = "rgba(0, 0, 0, 0.552)";
         successBuyContainer.style.display = "flex";
         setTimeout(() => {
           successBuyImg.style.transform = "scale(1)";
         }, 50);
+
         //--------------------------------------------------------------------------------
       }
       button.innerHTML = buttonText;
