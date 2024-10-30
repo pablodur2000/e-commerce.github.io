@@ -101,31 +101,27 @@ function renderSummary() {
 function removeFromCart(index) {
   cartItems.splice(index, 1);
   localStorage.setItem("cart", JSON.stringify(cartItems));
+  updateCartCount();
   renderCart();
 }
 
-//lo que se hace es volver a renderizar el carro para llamando a la funcion renderCart(), 
-//se evita que que quantity sea menor a 1, que en ese caso si lo es, se borra del carrito. 
+//lo que se hace es volver a renderizar el carro para llamando a la funcion renderCart(),
+//se evita que que quantity sea menor a 1, que en ese caso si lo es, se borra del carrito.
 //Sino es menor a 1 se actualiza en el array del carrito segun quantity
 //se guardan los cambios en el localstorage y se renderiza el cart.
 
 function updateQuantity(index, quantity) {
-
   quantity = Math.round(quantity);
 
-
   if (quantity < 1) {
-
     cartItems.splice(index, 1);
   } else {
-
     cartItems[index].productCountBuy = quantity;
   }
 
-
   localStorage.setItem("cart", JSON.stringify(cartItems));
 
-
+  updateCartCount();
   renderCart();
 }
 

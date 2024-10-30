@@ -71,7 +71,7 @@ const showProducts = (products) => {
         productDiv.addEventListener("click", () => {
           localStorage.setItem("product", JSON.stringify(product));
           if (window.location.hostname !== 'pablodur2000.github.io'){
-              window.location.href = "/e-commerce.github.io/product-info.html";
+              window.location.href = "/product-info.html";
         } else {
               window.location.href = "/e-commerce.github.io/product-info.html";
           }
