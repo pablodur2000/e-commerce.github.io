@@ -12,8 +12,6 @@ const img4 = document.getElementById("img4");
 const main = document.getElementById("main");
 const images = [img1, img2, img3, img4];
 
-
-
 const productData = async () => {
   const product = localStorage.getItem("product");
 
@@ -235,17 +233,16 @@ const mainElement = document.getElementById("main");
 const textElements = document.querySelectorAll(
   "p:not(footer p), h1:not(footer h1), h2:not(footer h2), h3:not(footer h3), h4:not(footer h4), h5:not(footer h5), h6:not(footer h6), span:not(footer span), small:not(footer small), a:not(footer a)"
 );
-const imgsProductsDetails = document.querySelectorAll('.product-details-imgs');
+const imgsProductsDetails = document.querySelectorAll(".product-details-imgs");
 
- 
 function enableDarkMode() {
-  const similarProductsP = document.querySelectorAll('.productCar p');
-  imgsProductsDetails.forEach(img => {
+  const similarProductsP = document.querySelectorAll(".productCar p");
+  imgsProductsDetails.forEach((img) => {
     img.style.filter = "invert()";
   });
-  similarProductsP.forEach(p => {
+  similarProductsP.forEach((p) => {
     p.style.color = "white";
-  })
+  });
   mainElement.style.backgroundColor = "#2b2b2b";
   textElements.forEach(function (element) {
     element.style.color = "white";
@@ -254,11 +251,11 @@ function enableDarkMode() {
 }
 
 function disableDarkMode() {
-  const similarProductsP = document.querySelectorAll('.productCar p');
-  imgsProductsDetails.forEach(img => {
+  const similarProductsP = document.querySelectorAll(".productCar p");
+  imgsProductsDetails.forEach((img) => {
     img.style.filter = "none";
   });
-  similarProductsP.forEach(p => {
+  similarProductsP.forEach((p) => {
     p.style.color = "black";
   });
   mainElement.style.backgroundColor = "white";
@@ -286,19 +283,18 @@ toggleSwitch.addEventListener("change", function () {
   }
 });
 
-
 //-------------------------------------------------------------------------------------------BUY AND ADD TO CART
-const buttonsBuy = document.querySelectorAll('.buttons-buy');
+const buttonsBuy = document.querySelectorAll(".buttons-buy");
 const productAddedText = document.getElementById("product-added-h4");
 const successBuyContainer = document.getElementById("success-buy-container");
 const successBuyImg = document.getElementById("success-buy-img");
 
-buttonsBuy.forEach(button => {
-  button.addEventListener('click', () =>{
+buttonsBuy.forEach((button) => {
+  button.addEventListener("click", () => {
     let product = JSON.parse(localStorage.getItem("product"));
     let cart = JSON.parse(localStorage.getItem("cart"));
     const buttonText = button.innerHTML;
-  
+
     const productCountBuy = document.getElementById("input-quantity").value;
 
     product.productCountBuy = parseInt(productCountBuy);
@@ -306,15 +302,18 @@ buttonsBuy.forEach(button => {
     button.innerHTML = `<img src="img/spinner-gif.webp" style="height: 30px;" alt="">`;
 
     setTimeout(() => {
-      if(!cart){
+      if (!cart) {
         cart = [product];
         localStorage.setItem("cart", JSON.stringify(cart));
-      }else{
+      } else {
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
-  
+
         //--------------------------------------------------------------------------------Animation button spinner and product added success
-        const añadidoConOSinS = product.productCountBuy > 1 ? "productos añadidos" : "producto añadido";
+        const añadidoConOSinS =
+          product.productCountBuy > 1
+            ? "productos añadidos"
+            : "producto añadido";
         productAddedText.innerHTML = `${productCountBuy} ${añadidoConOSinS} al carrito`;
         productAddedText.style.color = "rgba(0, 0, 0, 0.552)";
         successBuyContainer.style.display = "flex";
@@ -325,11 +324,13 @@ buttonsBuy.forEach(button => {
       }
       button.innerHTML = buttonText;
 
-      if(!button.classList.contains("add-to-cart")){
-        window.location.href = "/cart.html"
+      if (!button.classList.contains("add-to-cart")) {
+        if (window.location.hostname !== "pablodur2000.github.io") {
+          window.location.href = "/cart.html";
+        } else {
+          window.location.href = "/e-commerce.github.io/cart.html";
+        }
       }
-    }, 1200); 
-    
+    }, 1200);
   });
 });
-
