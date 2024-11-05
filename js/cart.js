@@ -4,7 +4,49 @@ const cartContainer = document.getElementById("cart-container");
 const orderSummary = document.getElementById("order-summary");
 const noItemsDiv = document.getElementById("no-items");
 
+let oneItemWithUSDPrice = false;
+let currencyCart = "UYU";
+let priceConverted;
+
+const convertUyuToUsd =  (price) =>{
+  const url = `https://api.currencyapi.com/v3/latest?apikey=cur_live_v0H2LFSA40iUuqsoqe47BzEWIPuHcVNiH9DawmK3`;
+  priceConverted = '';
+  try {
+    /*const response = await fetch(url);
+    if (!response.ok) throw new Error("Error en la solicitud");
+
+    const data = await response.json();
+    const tasaCambio = data.data.UYU.value;
+
+
+    console.log(`1 UYU equivale a ${tasaCambio} USD`);
+*/
+    priceConverted = price / 41;
+    console.log("PRECIO DENTRO DE ASYN: " + priceConverted);
+    
+  } catch (error) {
+    console.error("Error al obtener el tipo de cambio:", error);
+  }
+
+};
+
+for (let i = 0; i < cartItems.length; i++) {
+  if (cartItems[i].currency === "USD") {
+    console.log("SI hay item en USD")
+    oneItemWithUSDPrice = true;
+    break; // Detenemos el for aquí
+  }
+}
+
+
 function renderCart() {
+
+  if(oneItemWithUSDPrice === true){
+    currencyCart = "USD";
+  }else{
+    currencyCart = "UYU";
+  }
+
   noItemsDiv.innerHTML = "";
   cartContainer.innerHTML = "";
   if (cartItems.length === 0) {
@@ -21,6 +63,14 @@ function renderCart() {
     return;
   } else {
     cartItems.forEach((item, index) => {
+
+      let priceProduct;
+      if(item.isPriceConverted === true && oneItemWithUSDPrice === true){
+        priceProduct = item.costUSD;
+      }else{
+        priceProduct = item.cost;
+      }
+
       const card = document.createElement("div");
       card.innerHTML = `
                 <div class="flex items-center bg-white p-6 rounded-lg shadow-md border">
@@ -36,14 +86,12 @@ function renderCart() {
                     <div class="flex flex-col items-center ml-4">
                         ${
                           item.originalCost
-                            ? `<span class="text-sm text-gray-400 line-through">UYU ${item.originalCost.toFixed(
+                            ? `<span class="text-sm text-gray-400 line-through">${currencyCart} ${priceProduct.toFixed(
                                 2
                               )}</span>`
                             : ""
                         }
-                        <span class="text-lg font-bold text-gray-800">UYU ${item.cost.toFixed(
-                          2
-                        )}</span>
+                        <span class="text-lg font-bold text-gray-800">${currencyCart} ${priceProduct.toFixed(2)}</span>
                     </div>
                     <div class="flex items-center ml-4">
                         <button class="quantity-btn bg-gray-200 px-2 py-1 rounded-l-lg" onclick="updateQuantity(${index}, ${
@@ -68,34 +116,39 @@ function renderCart() {
   }
 }
 
-function renderSummary() {
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.cost * item.productCountBuy,
-    0
-  );
-  const taxEstimate = subtotal * 0.01;
-  const orderTotal = subtotal + taxEstimate;
 
-  orderSummary.innerHTML = `
-        <div class="bg-white p-6 rounded-lg shadow-md border">
-            <h3 class="text-xl font-semibold mb-4">Resumen de compra</h3>
-            <div class="flex justify-between mb-2">
-                <span class="text-gray-600">Subtotal</span>
-                <span class="text-gray-800 font-semibold">UYU ${subtotal.toFixed(
-                  2
-                )}</span>
-            </div>
-            <div class="flex justify-between mb-4">
-                <span class="text-gray-600">Impuesto estimado</span>
-                <span class="text-gray-800">UYU ${taxEstimate.toFixed(2)}</span>
-            </div>
-            <div class="flex justify-between text-lg font-semibold border-t pt-4">
-                <span>Total</span>
-                <span>UYU ${orderTotal.toFixed(2)}</span>
-            </div>
-            <button class="w-full mt-6 bg-black text-white py-3 rounded-full hover:bg-gray-800 transition-colors">Iniciar pago</button>
-            <a href="categories.html" class="block text-center mt-4 text-gray-600 hover:text-gray-800">Seguir comprando</a>
-        </div>`;
+
+function renderSummary() {
+
+const subtotal = cartItems.reduce(
+  (acc, item) => acc + (item.isPriceConverted ? item.costUSD : item.cost) * item.productCountBuy,
+  0
+);
+
+const taxEstimate = oneItemWithUSDPrice ? subtotal * 0.01 : subtotal * 0.1;  
+
+const orderTotal = subtotal + taxEstimate;
+
+orderSummary.innerHTML = `
+      <div class="bg-white p-6 rounded-lg shadow-md border">
+          <h3 class="text-xl font-semibold mb-4">Resumen de compra</h3>
+          <div class="flex justify-between mb-2">
+              <span class="text-gray-600">Subtotal</span>
+              <span class="text-gray-800 font-semibold">${currencyCart} ${subtotal.toFixed(
+                2
+              )}</span>
+          </div>
+          <div class="flex justify-between mb-4">
+              <span class="text-gray-600">Impuesto estimado</span>
+              <span class="text-gray-800">${currencyCart} ${taxEstimate.toFixed(2)}</span>
+          </div>
+          <div class="flex justify-between text-lg font-semibold border-t pt-4">
+              <span>Total</span>
+              <span>${currencyCart} ${orderTotal.toFixed(2)}</span>
+          </div>
+          <button class="w-full mt-6 bg-black text-white py-3 rounded-full hover:bg-gray-800 transition-colors">Iniciar pago</button>
+          <a href="categories.html" class="block text-center mt-4 text-gray-600 hover:text-gray-800">Seguir comprando</a>
+      </div>`;
 }
 
 function removeFromCart(index) {
