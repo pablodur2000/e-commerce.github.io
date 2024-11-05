@@ -283,6 +283,20 @@ toggleSwitch.addEventListener("change", function () {
   }
 });
 
+
+
+let priceConverted;
+const convertUyuToUsd =  (price) =>{
+  const url = `https://api.currencyapi.com/v3/latest?apikey=cur_live_v0H2LFSA40iUuqsoqe47BzEWIPuHcVNiH9DawmK3`;
+
+  priceConverted = '';
+
+  priceConverted = price / 41;
+  console.log("PRECIO DENTRO DE ASYN: " + priceConverted );
+
+};
+
+
 //-------------------------------------------------------------------------------------------BUY AND ADD TO CART
 const buttonsBuy = document.querySelectorAll(".buttons-buy");
 const productAddedText = document.getElementById("product-added-h4");
@@ -298,6 +312,16 @@ buttonsBuy.forEach((button) => {
     const productCountBuy = document.getElementById("input-quantity").value;
 
     product.productCountBuy = parseInt(productCountBuy);
+
+    if(product.currency === "UYU"){
+      convertUyuToUsd(product.cost);
+      console.log("Precio CONVERTIDO: " + Math.round(priceConverted));
+      product.costUSD = Math.round(priceConverted);
+      product.isPriceConverted = true;
+    }else{
+      product.isPriceConverted = false;
+    }
+    
 
     button.innerHTML = `<img src="img/spinner-gif.webp" style="height: 30px;" alt="">`;
 
