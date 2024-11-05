@@ -121,7 +121,7 @@ function renderCart() {
 function renderSummary() {
 
 const subtotal = cartItems.reduce(
-  (acc, item) => acc + (item.isPriceConverted ? item.costUSD : item.cost) * item.productCountBuy,
+  (acc, item) => acc + (item.isPriceConverted  && oneItemWithUSDPrice ? item.costUSD : item.cost) * item.productCountBuy,
   0
 );
 
