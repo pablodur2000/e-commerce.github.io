@@ -1,7 +1,7 @@
 
 //------------------------------------FETCH A CUPONES
 let cupons;
-fetch('../cupons.json')
+fetch('https://pablodur2000.github.io/e-commerce.github.io/cupons.json')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error al cargar el archivo JSON');
