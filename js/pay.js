@@ -94,7 +94,7 @@ let activeCupon = false;
 
 cuponInput.addEventListener('input', () =>{
 
-  resultCupon.innerHTML = `<img src="../img/spinner-gif.webp" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">`
+  resultCupon.innerHTML = `<img src="/e-commerce.github.io/img/spinner-gif.webp" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">`
 
  
   const input = cuponInput.value;
