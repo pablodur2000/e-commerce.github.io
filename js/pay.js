@@ -130,9 +130,6 @@ cuponInput.addEventListener('input', () =>{
 //------------------------------------------------------........-----------------------------------------------------------------
 
 
-
-
-
 const currencyPay = localStorage.getItem("currencyPay");   //Obtenemos la moneda en que se va a realizar el pago UYU o USD
 const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impuesto estimado del carrito actual
 // 'cuponInput.value' ----->                                 Para obtener el cupon, en caso de que 'activeCupon' es true
