@@ -1,0 +1,15 @@
+#pay-wrapper{
+    min-height: 800px;
+}
+
+.product-count{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: black;
+}

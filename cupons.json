@@ -1,0 +1,109 @@
+{
+    "cupones": [
+      {
+        "codigo": "DESC15",
+        "descuento": 0.15,
+        "dueno": "Carlos Ruiz",
+        "dni": "12345678",
+        "vencimiento": "2024-12-31"
+      },
+      {
+        "codigo": "ANAM13",
+        "descuento": 0.13,
+        "dueno": "Ana Martínez",
+        "dni": "87654321",
+        "vencimiento": "2024-11-30"
+      },
+      {
+        "codigo": "PRIMERA10",
+        "descuento": 0.10,
+        "dueno": "Luis Gómez",
+        "dni": "45678912",
+        "vencimiento": "2024-12-15"
+      },
+      {
+        "codigo": "DESCMAR25",
+        "descuento": 0.25,
+        "dueno": "María Jiménez",
+        "dni": "23456789",
+        "vencimiento": "2024-11-25"
+      },
+      {
+        "codigo": "BLACKFRIDAY10",
+        "descuento": 0.10,
+        "dueno": "Juan Pérez",
+        "dni": "98765432",
+        "vencimiento": "2024-11-29"
+      },
+      {
+        "codigo": "CYBERWEEK08",
+        "descuento": 0.08,
+        "dueno": "Isabel Sánchez",
+        "dni": "13579246",
+        "vencimiento": "2024-12-05"
+      },
+      {
+        "codigo": "SUMMER5",
+        "descuento": 0.05,
+        "dueno": "Andrés López",
+        "dni": "24681357",
+        "vencimiento": "2025-01-31"
+      },
+      {
+        "codigo": "NUEVOCLIENTE5",
+        "descuento": 0.05,
+        "dueno": "Lucía Fernández",
+        "dni": "35792468",
+        "vencimiento": "2024-12-10"
+      },
+      {
+        "codigo": "FESTIVO10",
+        "descuento": 0.10,
+        "dueno": "Manuel García",
+        "dni": "46813579",
+        "vencimiento": "2024-12-20"
+      },
+      {
+        "codigo": "VIP15",
+        "descuento": 0.15,
+        "dueno": "Rosa Morales",
+        "dni": "57924681",
+        "vencimiento": "2025-02-28"
+      },
+      {
+        "codigo": "OFERTA6",
+        "descuento": 0.06,
+        "dueno": "David Herrera",
+        "dni": "68135792",
+        "vencimiento": "2024-12-01"
+      },
+      {
+        "codigo": "PRIMAVERA15",
+        "descuento": 0.15,
+        "dueno": "Carmen Ortega",
+        "dni": "79246813",
+        "vencimiento": "2024-11-20"
+      },
+      {
+        "codigo": "REGALO2",
+        "descuento": 0.05,
+        "dueno": "Pedro Ríos",
+        "dni": "80461537",
+        "vencimiento": "2024-12-22"
+      },
+      {
+        "codigo": "OFERTAECO5",
+        "descuento": 0.05,
+        "dueno": "Daniela Ramírez",
+        "dni": "91352746",
+        "vencimiento": "2025-03-15"
+      },
+      {
+        "codigo": "PROMO10",
+        "descuento": 0.10,
+        "dueno": "Mario Suárez",
+        "dni": "10248356",
+        "vencimiento": "2024-12-08"
+      }
+    ]
+  }

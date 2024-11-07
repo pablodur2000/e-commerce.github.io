@@ -319,6 +319,7 @@ buttonsBuy.forEach((button) => {
       product.costUSD = Math.round(priceConverted);
       product.isPriceConverted = true;
     }else{
+      product.costUSD = product.cost;
       product.isPriceConverted = false;
     }
     

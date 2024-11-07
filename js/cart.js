@@ -30,10 +30,10 @@ const convertUyuToUsd =  (price) =>{
 
 };
 
-for (let i = 0; i < cartItems.length; i++) {
+for (let i = 0; i < cartItems.length; i++) {      //for para detectar si hay al menos un producto cen dolares en el carrito
   if (cartItems[i].currency === "USD") {
     console.log("SI hay item en USD")
-    oneItemWithUSDPrice = true;
+    oneItemWithUSDPrice = true;         //si si hay, setea oneItemWithUSDPrice
     break; // Detenemos el for aquí
   }
 }
@@ -41,10 +41,12 @@ for (let i = 0; i < cartItems.length; i++) {
 
 function renderCart() {
 
-  if(oneItemWithUSDPrice === true){
-    currencyCart = "USD";
+  if(oneItemWithUSDPrice === true){ //antes de renderizar el cart, pregunta que currency (USD o UYU) hay que poner
+    currencyCart = "USD";   //si hay al menos un producto cen dolares en el carrito
+    localStorage.setItem("curencyPay", "USD");
   }else{
-    currencyCart = "UYU";
+    currencyCart = "UYU";   //s NOi hay al menos un producto cen dolares en el carrito  
+    localStorage.setItem("curencyPay", "UYU");
   }
 
   noItemsDiv.innerHTML = "";
@@ -65,10 +67,10 @@ function renderCart() {
     cartItems.forEach((item, index) => {
 
       let priceProduct;
-      if(item.isPriceConverted === true && oneItemWithUSDPrice === true){
-        priceProduct = item.costUSD;
+      if(item.isPriceConverted === true && oneItemWithUSDPrice === true){     //seleccionamos que precio usar en el render dependiendo si el producto tiene el precio convertido y si hay al menos un producto en dolares en el cart
+        priceProduct = item.costUSD;      //Si si cumple, que use el precio en USD
       }else{
-        priceProduct = item.cost;
+        priceProduct = item.cost;     //de lo contrario, el precio en UYU
       }
 
       const card = document.createElement("div");
@@ -121,11 +123,12 @@ function renderCart() {
 function renderSummary() {
 
 const subtotal = cartItems.reduce(
-  (acc, item) => acc + (item.isPriceConverted  && oneItemWithUSDPrice ? item.costUSD : item.cost) * item.productCountBuy,
+  (acc, item) => acc + (item.isPriceConverted  && oneItemWithUSDPrice ? item.costUSD : item.cost) * item.productCountBuy,   //checkea si el precio del item es convertido y si existe un item con USD en el carrito
   0
 );
 
-const taxEstimate = oneItemWithUSDPrice ? subtotal * 0.01 : subtotal * 0.1;  
+const taxEstimate = oneItemWithUSDPrice ? subtotal * 0.01 : subtotal * 0.1; 
+localStorage.setItem("taxEstimated", taxEstimate); 
 
 const orderTotal = subtotal + taxEstimate;
 

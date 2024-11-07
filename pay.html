@@ -9,54 +9,395 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/pay.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
   
-  <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
-    <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
-    <ul id="ul-id">
-      <li id="li-id" class="li text-xl">
-        <a href="index.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
-        <a href="categories.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
-        <a href="sell.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
-        <div class="sm:inline-block text-white hover:text-indigo-700" id="login-item-container">
-          <a id="login-a" href="" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
-          <img id="img-arrow-menu-id" class="img-arrow-menu" src="img/arrow-down.png" alt="">
-          <div id="hidden-user-menu">
-              <a id="cart-link" href="cart.html" class="relative li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi carrito</a>
+  
 
-              <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi perfil</a>
-              <a href="" id="close-session-a" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Cerrar sesión</a>
-          </div>
-        </div>
-      </li>
-      <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
-        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-      </div>
-    </ul>
-  </nav>
-
-  <main>
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Carrito de Compras</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    </head>
     <body id="body" class="bg-gray-100">
-    <div id="no-items"></div>
-      <div id="cart-wrapper" class="flex flex-col lg:flex-row lg:space-x-8">
-          <div id="cart-container" class="flex-1 space-y-4 m-5">
+        <main>
+
+        <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
+            <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
+            <ul id="ul-id">
+              <li id="li-id" class="li text-xl">
+                <a href="index.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
+                <a href="categories.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
+                <a href="sell.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
+                <div class="sm:inline-block text-white hover:text-indigo-700" id="login-item-container">
+                  <a id="login-a" href="" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
+                  <img id="img-arrow-menu-id" class="img-arrow-menu" src="img/arrow-down.png" alt="">
+                  <div id="hidden-user-menu">
+                      <a id="cart-link" href="cart.html" class="relative li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi carrito</a>
+        
+                      <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi perfil</a>
+                      <a href="" id="close-session-a" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Cerrar sesión</a>
+                  </div>
+                </div>
+              </li>
+              <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
+                <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+                <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+                <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+              </div>
+            </ul>
+          </nav>
+
+
+      <div id="pay-wrapper" class="flex flex-col lg:flex-row lg:space-x-8 items-center pb-10 pt-10">
+
+          <!------------------------------------------------------------------Parte izquierda, datos de usuario-------------------------------------------------->
+          <div id="personal-data-container" class="flex-1 space-y-4 m-5 items-center bg-white p-6 rounded-lg shadow-md border">
+
+            <!-- Accordion Item 1 -->
+            <div class="border-b border-slate-200">
+                <button onclick="toggleAccordion(1)" class="w-full flex justify-between items-center py-5 text-slate-800">
+                  <span class="font-bold text-xl">Datos personales</span>
+                  <span id="icon-1" class="text-slate-800 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                      <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                    </svg>
+                  </span>
+                </button>
+                <div id="content-1" class="content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                  <div class="pb-5 text-sm text-slate-500">
+                    <!-----------------------Acordion 1 content------------------------->
+                    <form action="#" method="POST" class="space-y-4 mb-4">
+      
+                      <!-- Nombre y Apellidos en la misma línea -->
+                      <div class="flex flex-col md:flex-row md:space-x-4">
+                        <!-- Nombre -->
+                        <div class="w-full md:w-1/2">
+                          <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+                          <input type="text" id="nombre" name="nombre" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                
+                        <!-- Apellidos -->
+                        <div class="w-full md:w-1/2 md:mt-0">
+                          <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
+                          <input type="text" id="apellidos" name="apellidos" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                      </div>
+                
+                      <!-- Email ocupando todo el ancho -->
+                      <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" 
+                               class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                      </div>
+                
+                      <!-- Cédula y Teléfono en la misma línea -->
+                      <div class="flex flex-col md:flex-row md:space-x-4">
+                        <!-- Cédula -->
+                        <div class="w-full md:w-1/2">
+                          <label for="cedula" class="block text-sm font-medium text-gray-700">Cédula</label>
+                          <input type="text" id="cedula" name="cedula" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                
+                        <!-- Teléfono -->
+                        <div class="w-full md:w-1/2 md:mt-0">
+                          <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                          <input type="tel" id="telefono" name="telefono" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                      </div>
+                      
+                    </form>
+
+                    <button type="submit" class="button-next-pay w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                      Continuar
+                    </button>
+                  </div>
+                </div>
+            </div>
+
+          <!-- Accordion Item 2 -->
+            <div class="border-b border-slate-200">
+              <button onclick="toggleAccordion(2)" class="w-full flex justify-between items-center py-5 text-slate-800">
+                <span class="font-bold text-xl">Envío</span>
+                <span id="icon-2" class="text-slate-800 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                    <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                  </svg>
+                </span>
+              </button>
+              <div id="content-2" class="content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="pb-5 text-sm text-slate-500">
+                  <!-----------------------Acordion 2 content------------------------->
+
+                  <form class="space-y-4 mb-4">
+                
+                    <!-- Sección de Dirección -->
+                    <div class="space-y-4">
+                      <h3 class="text-xl font-semibold text-gray-700">Dirección</h3>
+                
+                      <!-- Departamento y Localidad en la misma fila -->
+                      <div class="flex flex-col md:flex-row md:space-x-4">
+                        <!-- Departamento -->
+                        <div class="w-full md:w-1/2">
+                          <label for="departamento" class="block text-sm font-medium text-gray-700">Departamento</label>
+                          <input type="text" id="departamento" name="departamento" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                
+                        <!-- Localidad -->
+                        <div class="w-full md:w-1/2 md:mt-0">
+                          <label for="localidad" class="block text-sm font-medium text-gray-700">Localidad</label>
+                          <input type="text" id="localidad" name="localidad" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                      </div>
+                
+                      <!-- Calle, Número y Esquina en la misma fila -->
+                      <div class="flex flex-col md:flex-row md:space-x-4">
+                        <!-- Calle -->
+                        <div class="w-full md:w-1/2">
+                          <label for="calle" class="block text-sm font-medium text-gray-700">Calle</label>
+                          <input type="text" id="calle" name="calle" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                
+                        <!-- Número -->
+                        <div class="w-full md:w-1/4 md:mt-0">
+                          <label for="numero" class="block text-sm font-medium text-gray-700">Número</label>
+                          <input type="text" id="numero" name="numero" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                
+                        <!-- Esquina -->
+                        <div class="w-full md:w-1/4 md:mt-0">
+                          <label for="esquina" class="block text-sm font-medium text-gray-700">Esquina</label>
+                          <input type="text" id="esquina" name="esquina" 
+                                 class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <!-- Sección de Tipo de Envío -->
+                    <div class="space-y-4 mt-6">
+                      <h3 class="text-xl font-semibold text-gray-700">Tipo de Envío</h3>
+                      
+                      <!-- Opciones de envío -->
+                      <div class="space-y-2">
+                        <label class="flex items-center">
+                          <input type="radio" name="tipo_envio" value="premium" class="mr-2 0text-blue-60 focus:ring-blue-500" required>
+                          <span class="text-lg font-bold">Premium 2 a 5 días (15%)</span>
+                        </label>
+                        <label class="flex items-center">
+                          <input type="radio" name="tipo_envio" value="express" class="mr-2 text-blue-600 focus:ring-blue-500" required>
+                          <span class="text-lg font-bold">Express 5 a 8 días (7%)</span>
+                        </label>
+                        <label class="flex items-center">
+                          <input type="radio" name="tipo_envio" value="standard" class="mr-2 text-blue-600 focus:ring-blue-500" required>
+                          <span class="text-lg font-bold">Standard 12 a 15 días (5%)</span>
+                        </label>
+                      </div>
+                    </div>
+                
+                
+                  </form>
+
+                  <button type="submit" class="button-next-pay w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Continuar
+                  </button>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="border-b border-slate-200">
+              <button onclick="toggleAccordion(3)" class="w-full flex justify-between items-center py-5 text-slate-800">
+                <span class="font-bold text-xl">Pago</span>
+                <span id="icon-3" class="text-slate-800 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                    <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                  </svg>
+                </span>
+              </button>
+              <div id="content-3" style="max-height: fit-content !important;" class="content overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="pb-5 text-sm text-slate-500">
+                    <!-----------------------Acordion 3 content------------------------->
+                  <!--<div style="width: 100% !important;" class="flex items-center justify-center">-->
+                    <div class="bg-white rounded-lg shadow-md w-full">
+                  
+                      <!-- Opciones de pago -->
+                      <div class="space-y-4 mb-4">
+
+                        <div class="space-y-2">
+                          <label class="flex items-center">
+                            <input type="radio" name="paymentMethod" value="bankTransfer" class="pay-method-radio mr-2 text-blue-600 focus:ring-blue-500" onclick="togglePaymentFields('bank')" required>
+                            <span class="text-lg font-bold">Transferencia Bancaria</span>
+                          </label>
+                          <label class="flex items-center">
+                            <input type="radio" name="paymentMethod" value="creditCard" class="pay-method-radio mr-2 text-blue-600 focus:ring-blue-500" onclick="togglePaymentFields('card')" required>
+                            <span class="text-lg font-bold">Tarjeta de Crédito</span>
+                          </label>
+                        </div>
+                      </div>
+                  
+                      <!-- Datos para transferencia bancaria -->
+                      <div id="bankFields" class="hidden space-y-4">
+                        <h3 class="text-xl font-semibold text-gray-700">Datos de Transferencia Bancaria</h3>
+                        <div>
+                          <label class="block text-sm font-medium text-gray-700">Número de Cuenta</label>
+                          <input type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Ingrese el número de cuenta" required>
+                        </div>
+                        <div>
+                          <label class="block text-sm font-medium text-gray-700">Titular de la Cuenta</label>
+                          <input type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Nombre del titular" required>
+                        </div>
+                      </div>
+                  
+                      <!-- Datos para tarjeta de crédito -->
+                      <div id="cardFields" class="hidden space-y-4">
+                        <h3 class="text-xl font-semibold text-gray-700">Datos de Tarjeta de Crédito</h3>
+                        <div class="flex flex-col md:flex-row md:space-x-4">
+                          <!-- Número de tarjeta -->
+                          <div class="w-full md:w-1/2">
+                            <label class="block text-sm font-medium text-gray-700">Número de Tarjeta</label>
+                            <input type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="1234 5678 9012 3456" required>
+                          </div>
+                          <!-- Cuotas -->
+                          <div class="w-full md:w-1/2">
+                            <label class="block text-sm font-medium text-gray-700">Cuotas</label>
+                            <select class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                              <option>1 cuota</option>
+                              <option>3 cuotas</option>
+                              <option>6 cuotas</option>
+                              <option>12 cuotas</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row md:space-x-4">
+                          <!-- Nombre y apellido -->
+                          <div class="w-full md:w-1/2">
+                            <label class="block text-sm font-medium text-gray-700">Nombre y Apellido</label>
+                            <input type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Nombre del titular" required>
+                          </div>
+                          <!-- Fecha de vencimiento -->
+                          <div class="w-full md:w-1/4">
+                            <label class="block text-sm font-medium text-gray-700">Vencimiento</label>
+                            <input type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="MM/AA" required>
+                          </div>
+                          <!-- Código de seguridad -->
+                          <div class="w-full md:w-1/4">
+                            <label class="block text-sm font-medium text-gray-700">CVV</label>
+                            <input type="text" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="CVV" required>
+                          </div>
+                        </div>
+                      </div>
+                  
+                      <button class="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200 mt-6">
+                        Finalizar Compra
+                      </button>
+                    </div>
+                  
+                
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div id="order-summary" class="lg:w-1/3 mt-8 lg:mt-0 m-5">
+
+          <!-- Sección derecha del resumen de compra -->
+          <div class="w-full lg:w-1/3 space-y-4 bg-gray-50 p-6 rounded-lg shadow-md" style="margin-right: 40px !important;">
+            <!-- Título de resumen de compra -->
+            <h2 class="text-2xl font-semibold text-gray-700">Resumen de compra</h2>
+          
+            <!-- Lista de productos en cards -->
+            <div class="space-y-4">
+              <!-- Cada producto será una card -->
+              <div class="flex items-center p-4 border border-gray-300 rounded-lg justify-between">
+                <img src="img/cat105_1.jpg"Producto" class="w-auto h-14 mr-3">
+                <div class="flex-1">
+                  <h3 class="text-lg font-medium text-gray-700">Nombre del producto</h3>
+                  <p class="product-count border border-2 border-gray-950">2</p>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$200</p>
+              </div>
+            
+              <!-- Card de ejemplo para otro producto -->
+              <div class="flex items-center p-4 border border-gray-300 rounded-lg justify-between">
+                <img src="img/cat101_1.jpg" alt="Producto" class="w-auto h-14 mr-3">
+                <div class="flex-1">
+                  <h3 class="text-lg font-medium text-gray-700">Nombre del producto 2</h3>
+                  <p class="product-count border border-2 border-gray-950">1</p>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">$400</p>
+              </div>
+            
+              <!-- Más cards de productos se pueden agregar de manera similar -->
+            </div>
+
+            <!-- Sección de descuento y promociones -->
+            <div class="pt-2 border-t border-gray-200 ">
+              <!-- Código de descuento -->
+              <div class="flex items-center space-x-2 p-3 bg-white">
+                <img src="img/icon-cupon.png" alt="Icono Descuento" class="w-auto h-12">
+                <p class="text-sm text-gray-600">Ingresa aquí un código de descuento</p>
+                <input type="text" id="cupon-input" class="mt-1 p-1 w-17 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Código">
+              </div>
+
+
+              <div id="result-cupon" class="flex items-center bg-white rounded-lg max-w-4x  ml-4">
+                
+              </div>
+
+              <!-- Promociones bancarias -->
+              <div class="flex items-center space-x-2 p-3 bg-white">
+                <img src="img/icon-bank.png" alt="Icono Promociones" class="w-auto h-12">
+                <p class="text-sm text-gray-600">Consultar promociones bancarias, <span style="font-weight: 700; text-decoration: underline; cursor: pointer;";">click aquí</span></p>
+              </div>
+            </div>
+          
+            <!-- Tipo de envío seleccionado -->
+            <div class="border-t border-gray-200 pt-3">
+              <p class="text-gray-700 font-medium">Tipo de envío: <span class="font-semibold">Express</span></p>
+            </div>
+          
+            <!-- Resumen de precios -->
+            <div class="border-t border-gray-200 pt-3 space-y-2">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Subtotal</span>
+                <span class="font-semibold text-gray-700">$600</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Envío</span>
+                <span class="font-semibold text-gray-700">$50</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Impuesto estimado</span>
+                <span class="font-semibold text-gray-700">$50</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Cupón de descuento</span>
+                <span class="font-semibold text-gray-700">- $0</span>
+              </div>
+              <div class="flex justify-between border-t border-gray-300 pt-2">
+                <span class="text-lg font-semibold text-gray-800">Total</span>
+                <span class="text-lg font-semibold text-gray-800">$650</span>
+              </div>
+            </div>
+          
+            <!-- Botones para realizar pago y volver al carrito -->
+            <div class="pt-4 space-y-2">
+              <button class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500">
+                Realizar Pago
+              </button>
+              <button class="w-full py-2 px-4 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600">
+                Volver al carrito
+              </button>
+            </div>
           </div>
-      </div>
+
+          
+      </div>   <!------------------Fin contenedor principal!!!!------------------>
     
     </body>
     </html>
@@ -280,12 +621,24 @@
   </footer>
 
 
+  <script>
+    function hideAllAcordion(){
+      const contents = document.querySelectorAll('.content');
+      for(let i = 0; i < contents.length; i++){
+        contents[i].style.maxHeight = '0';
+
+      }
+    }
+
+  hideAllAcordion()
+  </script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/logged-user.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/cartCount.js"></script>
+  <script src="js/pay.js"></script>
 
 </body>
 
