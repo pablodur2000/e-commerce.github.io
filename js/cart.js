@@ -149,12 +149,12 @@ orderSummary.innerHTML = `
               <span>Total</span>
               <span>${currencyCart} ${orderTotal.toFixed(2)}</span>
           </div>
-          <button class="w-full mt-6 bg-black text-white py-3 rounded-full hover:bg-gray-800 transition-colors">Iniciar pago</button>
+          <a><button style="display: flex; justify-content: center;" class="w-full mt-6 bg-black text-white py-3 rounded-full hover:bg-gray-800 transition-colors" onclick="startPay()" id="start-pay">Iniciar pago</button></a>
           <a href="categories.html" class="block text-center mt-4 text-gray-600 hover:text-gray-800">Seguir comprando</a>
       </div>`;
 }
 
-function removeFromCart(index) {
+function removeFromCart(index) { //href="e-commerce.github.io/pay.html"
   cartItems.splice(index, 1);
   localStorage.setItem("cart", JSON.stringify(cartItems));
   updateCartCount();
@@ -182,3 +182,26 @@ function updateQuantity(index, quantity) {
 }
 
 renderCart();
+
+
+
+function startPay() {
+
+  const button = document.getElementById("start-pay");
+
+  button.innerHTML = `<img src="img/spinner-gif.webp" style="height: 30px;" alt="">`;
+
+  setTimeout(() => {
+    button.innerHTML = 'Ingresando...'
+    Swal.fire({
+      icon: 'success',
+      title: 'Conexión segura para el pago.',
+      text: 'Redireccionando...',
+      showConfirmButton: false,
+      timer: 3000 // Tiempo en milisegundos antes de que la alerta se cierre automáticamente
+    });
+    setTimeout(() => {
+      window.location.href = '/e-commerce.github.io/pay.html'
+    }, 2000);
+  }, 1400);
+}
