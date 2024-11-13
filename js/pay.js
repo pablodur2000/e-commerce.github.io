@@ -180,33 +180,33 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
 
-      // Si todos los campos fueron completados, se pasa a la seccion de pago
+      // si todos los campos fueron completados, se pasa a la seccion de pago
       if (allEnvioFieldsCompleted) {
-          envioContainer.style.maxHeight = "0"; // ocultar sección de envío
-          pagoContainer.style.maxHeight = "fit-content"; // mostrar seccion de pago
+          envioContainer.style.maxHeight = "0"; 
+          pagoContainer.style.maxHeight = "fit-content"; 
       } else {
           alert("Por favor, completa todos los campos requeridos en la sección de envío.");
       }
   });
 
-  // Botón finalizar compra en la seccion de pago
+  // boton para finalizar compra en la seccion de pago
   document.getElementById("finalizar-compra-btn").addEventListener("click", function(event) {
-      event.preventDefault();
-      
-      // se verifica si los campos de pago fueron completados
-      const pagoFields = pagoContainer.querySelectorAll("input[required]");
-      let allPagoFieldsCompleted = true;
-      pagoFields.forEach((field) => {
-          if (!field.value) {
-              allPagoFieldsCompleted = false;
-          }
-      });
+    event.preventDefault();
+    
+    // se verifica si al menos un campo de pago fue completado
+    const tarjetaField = pagoContainer.querySelector("input[name='tarjeta']"); 
+    const transferenciaField = pagoContainer.querySelector("input[name='transferencia']"); 
+    let metodoSeleccionado = false;
+    
+    // verificamos si al menos uno de los campos de pago tiene valor
+    if ((tarjetaField && tarjetaField.value) || (transferenciaField && transferenciaField.value)) {
+        metodoSeleccionado = true;
+    }
 
-      // si todos los campos estan completos se muestra mensaje de compra finalizada
-      if (allPagoFieldsCompleted) {
-          alert("Compra finalizada");
-      } else {
-          alert("Por favor, completa todos los campos requeridos en la sección de pago.");
-      }
-  });
+    if (metodoSeleccionado) {
+        alert("Compra finalizada");
+    } else {
+        alert("Por favor, completa al menos una sección de pago (tarjeta o transferencia bancaria).");
+    }
+});
 });
