@@ -1,3 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+/* HOME START*/
+.logo {
+  width: 200px;
+}
+.category-card {
+  position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.category-card img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.category-card:hover img {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+.category-card .category-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 30px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(12, 12, 12, 0.43);
+}
+
+.category-card:hover .category-name {
+  opacity: 1;
+}
+.cart-count-badge {
+  position: absolute;
+  top: -3px;
+  left: 8px;
+}
+.img-arrow-menu-id-div{
+position: relative;
+}
+.hidden-user-menu {
+  box-shadow: 10px 10px 21px -8px rgba(115,115,115,1);; ;
+ 
+}
+/* ----------------------------------------------START NAV-------------------------------------- */
+
 .jumbotron,
 .card-body,
 .container,
@@ -12,8 +66,50 @@
 nav a {
   text-decoration: none;
 }
+/* ----------------------------------------------END NAV-------------------------------------- */
+
+
+
+.img-carr{
+  height: auto !important;
+  width: auto !important;
+}
+
+
+
+/* Asegura que el contenedor ocupe toda la altura de la pantalla en pantallas pequeñas */
+#carousel-wrapper {
+  max-height: 600px;
+  min-height: 500px;
+}
+
+/* En pantallas pequeñas, el contenedor ocupa el 100% de la altura */
+@media (max-width: 768px) {
+  #carousel-wrapper {
+    height: 30vh !important;
+    max-height: 30vh !important;
+    min-height: 30vh !important;
+  }
+  .img-carr {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #carousel-wrapper {
+    height: 20vh !important;
+    max-height: 20vh !important;
+    min-height: 20vh !important;
+  }
+}
+
+/* Asegura que las imágenes ocupen el 100% de la altura del contenedor */
+
+
+
 
 /* ----------------------------------------------NAV-------------------------------------- */
+
 #login-item-container{
   position: relative;
   display: inline-flex;
@@ -40,26 +136,23 @@ nav a {
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+  background-color: white;
   transform: translateY(110px);
   right: 0;
-  padding: 15px;
+  padding: 2px;
   width: 160px;
   transition: all 200ms ease;
+  bottom: 0;
+  -webkit-box-shadow: 10px 10px 21px -8px rgba(115,115,115,1);
+-moz-box-shadow: 10px 10px 21px -8px rgba(115,115,115,1);
+box-shadow: 10px 10px 21px -8px rgba(115,115,115,1);
 }
 
 #hidden-user-menu a{
   margin: 5px 0;
 }
 
-@media (max-width: 639px) {
-  #hidden-user-menu {
-    transform: translateY(100px);
-    right: -30px;
-    height: 140px;
-    gap: 2px;
-  }
-}
+
 
 .ul-class{
   position: relative !important;

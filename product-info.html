@@ -16,42 +16,79 @@
 
 <body id="body">
 
+
   
-  <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
-    <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
+  <nav
+      class="flex items-center justify-between p-6 h-20 shadow-sm bg-white"
+    >
+     <img src="/e-commerce.github.io/img/logo.png" alt="Logo" class="logo">
+      <ul id="ul-id">
+        <li id="li-id" class="li text-xl">
+          <label class="ui-switch">
+            <input type="checkbox" class="checkbox">
+            <div class="slider">
+              <div class="circle"></div>
+            </div>
+          </label>
+          <a
+            href="categories.html"
+            class="li-a hidden sm:inline-block text-black hover:text-black"
+            >Categorias</a
+          >
+          <a
+            href="sell.html"
+            class="li-a hidden sm:inline-block text-black hover:text-black"
+            >Vender</a
+          >
+          <div
+            class="sm:inline-block text-black hover:text-black"
+            id="login-item-container"
+          >
+            <a
+              id="login-a"
+              href=""
+              class="li-a hidden sm:inline-block text-black hover:text-black"
+              >Login</a
+            >
+            <div class="img-arrow-menu-id-div">
+              <svg id="img-arrow-menu-id" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 img-arrow-menu">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+              <div id="hidden-user-menu">
+                <a
+                  href="my-profile.html"
+                  class="li-a hidden sm:inline-block text-black hover:text-black"
+                  >Mi perfil</a
+                >
+                <a
+                  href=""
+                  id="close-session-a"
+                  class="li-a hidden sm:inline-block text-black hover:text-black"
+                  >Cerrar sesión</a
+                >
+              </div>
+            </div>
+           
+           
 
-    <ul id="ul-id">
-      <div class="flex justify-center items-center gap-6">
-        <label class="ui-switch">
-          <input type="checkbox" class="checkbox">
-          <div class="slider">
-            <div class="circle"></div>
+            <a
+            id="cart-link"
+            href="cart.html"
+            class="relative li-a hidden sm:inline-block text-black hover:text-black"
+            > <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="
+            position: relative;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg></a
+          >
           </div>
-        </label>
-      <li id="li-id" class="li top-[-1px] xl:top-0 lg:top-0 md:top-0 text-xl">
-        <a href="index.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
-        <a href="categories.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
-        <a href="sell.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
-        <div class="sm:inline-block text-white hover:text-indigo-700" id="login-item-container">
-          <a id="login-a" href="" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
-          <img id="img-arrow-menu-id" class="img-arrow-menu" src="img/arrow-down.png" alt="">
-          <div id="hidden-user-menu">
-              <a id="cart-link" href="cart.html" class="relative li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi carrito</a>
-
-              <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi perfil</a>
-              <a href="" id="close-session-a" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Cerrar sesión</a>
-          </div>
+        </li>
+        <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
+          <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+          <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+          <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
         </div>
-      </li>
-      <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
-        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-        <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-      </div>   
-      </div>   
-      
-    </ul>
-  </nav>
+      </ul>
+    </nav>
 
   <main id="main" class="bg-black">
     <div class="container">

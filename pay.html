@@ -339,16 +339,18 @@
             <!-- Sección de descuento y promociones -->
             <div class="pt-2 border-t border-gray-200 ">
               <!-- Código de descuento -->
-              <div class="flex items-center space-x-2 p-3 bg-white">
-                <img src="img/icon-cupon.png" alt="Icono Descuento" class="w-auto h-12">
-                <p class="text-sm text-gray-600">Ingresa aquí un código de descuento</p>
-                <input type="text" id="cupon-input" class="mt-1 p-1 w-17 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Código">
-              </div>
+<div class="flex items-center space-x-2 p-3 bg-white">
+  <img src="img/icon-cupon.png" alt="Icono Descuento" class="w-auto h-12">
+  <p class="text-sm text-gray-600">Ingresa aquí un código de descuento</p>
+  <input type="text" id="cupon-input" class="mt-1 p-1 w-17 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Código">
+  <button id="apply-coupon-button" class="py-1 px-3 bg-blue-600 text-white rounded-md">Aplicar</button>
+</div>
 
+<!-- Div to display coupon validation messages -->
+<div id="result-cupon" class="flex items-center bg-white rounded-lg max-w-4x ml-4 text-red-500">
+  <!-- Messages will appear here -->
+</div>
 
-              <div id="result-cupon" class="flex items-center bg-white rounded-lg max-w-4x  ml-4">
-                
-              </div>
 
               <!-- Promociones bancarias -->
               <div class="flex items-center space-x-2 p-3 bg-white">
@@ -357,34 +359,38 @@
               </div>
             </div>
           
-            <!-- Tipo de envío seleccionado -->
-            <div class="border-t border-gray-200 pt-3">
-              <p class="text-gray-700 font-medium">Tipo de envío: <span class="font-semibold">Express</span></p>
-            </div>
-          
-            <!-- Resumen de precios -->
-            <div class="border-t border-gray-200 pt-3 space-y-2">
-              <div class="flex justify-between">
-                <span class="text-gray-600">Subtotal</span>
-                <span class="font-semibold text-gray-700">$600</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Envío</span>
-                <span class="font-semibold text-gray-700">$50</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Impuesto estimado</span>
-                <span class="font-semibold text-gray-700">$50</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Cupón de descuento</span>
-                <span class="font-semibold text-gray-700">- $0</span>
-              </div>
-              <div class="flex justify-between border-t border-gray-300 pt-2">
-                <span class="text-lg font-semibold text-gray-800">Total</span>
-                <span class="text-lg font-semibold text-gray-800">$650</span>
-              </div>
-            </div>
+    
+<!-- Tipo de envío seleccionado -->
+<div class="border-t border-gray-200 pt-3">
+  <p class="text-gray-700 font-medium">
+    Tipo de envío: <span id="tipo-envio-seleccionado" class="font-semibold"></span>
+  </p>
+</div>
+
+<!-- Resumen de precios -->
+<div class="border-t border-gray-200 pt-3 space-y-2">
+  <div class="flex justify-between">
+    <span class="text-gray-600">Subtotal</span>
+    <span id="subtotal-amount" class="font-semibold text-gray-700">$600</span>
+  </div>
+  <div class="flex justify-between">
+    <span class="text-gray-600">Envío</span>
+    <span id="envio-amount" class="font-semibold text-gray-700">$0</span>
+  </div>
+  <div class="flex justify-between">
+    <span class="text-gray-600">Impuesto estimado</span>
+    <span id="impuesto-amount" class="font-semibold text-gray-700">$50</span>
+  </div>
+  <div class="flex justify-between">
+    <span class="text-gray-600">Cupón de descuento</span>
+    <span id="cupon-amount" class="font-semibold text-gray-700">- $0</span>
+  </div>
+  <div class="flex justify-between border-t border-gray-300 pt-2">
+    <span class="text-lg font-semibold text-gray-800">Total</span>
+    <span id="total-amount" class="text-lg font-semibold text-gray-800">$650</span>
+  </div>
+</div>
+
           
             <!-- Botones para realizar pago y volver al carrito -->
             <div class="pt-4 space-y-3">

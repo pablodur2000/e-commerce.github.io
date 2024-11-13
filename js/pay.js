@@ -137,19 +137,229 @@ const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impues
 
 
 
-//----------------------------------------------------------------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+  let couponsData = null;
 
+  fetch('../cupons.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      couponsData = data;
+      initializeScript();
+    })
+    .catch(error => {
+      console.error('Error fetching coupons data:', error);
+    });
+
+  function initializeScript() {
+
+    const shippingOptions = document.querySelectorAll('input[name="tipo_envio"]');
+    const subtotalElement = document.getElementById('subtotal-amount');
+    const envioAmountElement = document.getElementById('envio-amount');
+    const impuestoElement = document.getElementById('impuesto-amount');
+    const cuponElement = document.getElementById('cupon-amount');
+    const totalAmountElement = document.getElementById('total-amount');
+    const tipoEnvioLabel = document.getElementById('tipo-envio-seleccionado');
+
+    const cuponInput = document.getElementById('cupon-input');
+    const applyCouponButton = document.getElementById('apply-coupon-button');
+    const resultCupon = document.getElementById('result-cupon');
+
+    let cuponDiscount = 0; 
+
+    function updateTotal() {
+      
+      let subtotalText = subtotalElement.textContent;
+      let subtotalAmount = parseFloat(subtotalText.replace('$', ''));
+
+    
+      let envioText = envioAmountElement.textContent;
+      let envioAmount = parseFloat(envioText.replace('$', ''));
+
+    
+      let impuestoAmount = parseFloat(impuestoElement.textContent.replace('$', ''));
+
+      let cuponDiscountAmount = subtotalAmount * cuponDiscount;
+      cuponElement.textContent = '- $' + cuponDiscountAmount.toFixed(2);
+
+   
+      let totalAmount = subtotalAmount + envioAmount + impuestoAmount - cuponDiscountAmount;
+
+     
+      totalAmountElement.textContent = '$' + totalAmount.toFixed(2);
+    }
+
+    function updateShippingCost() {
+   
+      let selectedOption = document.querySelector('input[name="tipo_envio"]:checked');
+      if (selectedOption) {
+        let value = selectedOption.value;
+        let percentage = 0;
+        let shippingType = '';
+
+        if (value === 'premium') {
+          percentage = 0.15;
+          shippingType = 'Premium';
+        } else if (value === 'express') {
+          percentage = 0.07;
+          shippingType = 'Express';
+        } else if (value === 'standard') {
+          percentage = 0.05;
+          shippingType = 'Standard';
+        }
+
+        let subtotalText = subtotalElement.textContent;
+        let subtotalAmount = parseFloat(subtotalText.replace('$', ''));
+
+        let shippingCost = subtotalAmount * percentage;
+
+        envioAmountElement.textContent = '$' + shippingCost.toFixed(2);
+
+        tipoEnvioLabel.textContent = shippingType;
+
+        updateTotal();
+      }
+    }
+
+    shippingOptions.forEach(function(option) {
+      option.addEventListener('change', updateShippingCost);
+    });
+
+
+    function applyCoupon() {
+      const enteredCode = cuponInput.value.trim().toUpperCase();
+      const today = new Date();
+
+      if (!couponsData) {
+        console.error('Coupons data not loaded');
+        return;
+      }
+
+      const coupon = couponsData.cupones.find(c => c.codigo === enteredCode);
+
+      if (coupon) {
+        const expirationDate = new Date(coupon.vencimiento);
+        if (expirationDate >= today) {
+
+          cuponDiscount = coupon.descuento;
+          resultCupon.textContent = 'Cupón aplicado: ' + (cuponDiscount * 100) + '% de descuento.';
+          resultCupon.style.color = 'green';
+
+          updateTotal();
+        } else {
+        
+          cuponDiscount = 0;
+          resultCupon.textContent = 'El cupón ha expirado.';
+          resultCupon.style.color = 'red';
+          updateTotal();
+        }
+      } else {
+
+        cuponDiscount = 0;
+        resultCupon.textContent = 'El cupón no es válido.';
+        resultCupon.style.color = 'red';
+
+        updateTotal();
+      }
+    }
+
+
+    applyCouponButton.addEventListener('click', applyCoupon);
+
+
+    cuponInput.addEventListener('input', function() {
+      if (cuponInput.value.trim() === '') {
+
+        cuponDiscount = 0;
+        cuponElement.textContent = '- $0.00';
+        resultCupon.textContent = '';
+        updateTotal();
+      }
+    });
+
+    updateShippingCost();
+  }
+});
+
+
+function toggleAccordion(index) {
+  var content = document.getElementById("content-" + index);
+  var icon = document.getElementById("icon-" + index);
+  var canToggle = true;
+
+  if (index > 1) {
+      for (var i = 1; i < index; i++) {
+          var prevContent = document.getElementById("content-" + i);
+          var requiredFields = prevContent.querySelectorAll("input[required]");
+          for (var j = 0; j < requiredFields.length; j++) {
+              if (!requiredFields[j].value) {
+                  canToggle = false;
+                  break;
+              }
+          }
+          if (!canToggle) {
+              break;
+          }
+      }
+  }
+
+  if (canToggle) {
+      if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+          content.style.maxHeight = "0px";
+          icon.style.transform = "rotate(0deg)";
+      } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.style.transform = "rotate(45deg)";
+      }
+  } else {
+      alert("Por favor, completa todos los campos requeridos en las secciones anteriores.");
+  }
+}
+
+function togglePaymentFields(method) {
+  const bankFields = document.getElementById("bankFields");
+  const cardFields = document.getElementById("cardFields");
+
+  if (method === "bank") {
+      bankFields.classList.remove("hidden");
+      bankFields.querySelectorAll("input, select").forEach(input => {
+          input.disabled = false;
+          input.required = true;
+      });
+      cardFields.classList.add("hidden");
+      cardFields.querySelectorAll("input, select").forEach(input => {
+          input.disabled = true;
+          input.required = false;
+          input.value = ""; 
+      });
+  } else if (method === "card") {
+      cardFields.classList.remove("hidden");
+      cardFields.querySelectorAll("input, select").forEach(input => {
+          input.disabled = false;
+          input.required = true;
+      });
+      bankFields.classList.add("hidden");
+      bankFields.querySelectorAll("input, select").forEach(input => {
+          input.disabled = true;
+          input.required = false;
+          input.value = "";
+      });
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   const personalDataContainer = document.getElementById("content-1");
   const envioContainer = document.getElementById("content-2");
-  const pagoContainer = document.getElementById("content-3"); // Sección de pago
+  const pagoContainer = document.getElementById("content-3");
 
-  // boton de continuar
+
   document.querySelector(".button-next-pay").addEventListener("click", function(event) {
       event.preventDefault();
-      
-      // se verifica si los campos fueron completados
+
       const requiredFields = personalDataContainer.querySelectorAll("input[required]");
       let allFieldsCompleted = true;
       requiredFields.forEach((field) => {
@@ -158,20 +368,19 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
 
-      // si se completan los campos se pasa a la parte de datos de envio
       if (allFieldsCompleted) {
-          personalDataContainer.style.maxHeight = "0"; // ocultar datos personales
-          envioContainer.style.maxHeight = "fit-content"; // mostrar seccion de envío
+          personalDataContainer.style.maxHeight = "0";
+          envioContainer.style.maxHeight = envioContainer.scrollHeight + "px";
+          document.getElementById("icon-1").style.transform = "rotate(0deg)";
+          document.getElementById("icon-2").style.transform = "rotate(45deg)";
       } else {
           alert("Por favor, completa todos los campos requeridos.");
       }
   });
 
-  // boton continuar
   document.getElementById("continuar-btn").addEventListener("click", function(event) {
       event.preventDefault();
-      
-      // se verifica que se hayan completado los campos
+
       const envioFields = envioContainer.querySelectorAll("input[required]");
       let allEnvioFieldsCompleted = true;
       envioFields.forEach((field) => {
@@ -180,15 +389,24 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
 
+<<<<<<< HEAD
       // si todos los campos fueron completados, se pasa a la seccion de pago
       if (allEnvioFieldsCompleted) {
           envioContainer.style.maxHeight = "0"; 
           pagoContainer.style.maxHeight = "fit-content"; 
+=======
+      if (allEnvioFieldsCompleted) {
+          envioContainer.style.maxHeight = "0";
+          pagoContainer.style.maxHeight = pagoContainer.scrollHeight + "px";
+          document.getElementById("icon-2").style.transform = "rotate(0deg)";
+          document.getElementById("icon-3").style.transform = "rotate(45deg)";
+>>>>>>> 2e303f63f8d45e2e89c2edb8bb7c944dbe379d16
       } else {
           alert("Por favor, completa todos los campos requeridos en la sección de envío.");
       }
   });
 
+<<<<<<< HEAD
   // boton para finalizar compra en la seccion de pago
   document.getElementById("finalizar-compra-btn").addEventListener("click", function(event) {
     event.preventDefault();
@@ -210,3 +428,42 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 });
+=======
+  document.getElementById("finalizar-compra-btn").addEventListener("click", function(event) {
+      event.preventDefault();
+
+
+      const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+
+      if (!selectedPaymentMethod) {
+          alert("Por favor, selecciona un método de pago.");
+          return;
+      }
+
+      let allPagoFieldsCompleted = true;
+      let pagoFields;
+
+      if (selectedPaymentMethod.value === "bankTransfer") {
+          // Validar campos de transferencia bancaria
+          pagoFields = document.getElementById("bankFields").querySelectorAll("input[required]");
+      } else if (selectedPaymentMethod.value === "creditCard") {
+          // Validar campos de tarjeta de crédito
+          pagoFields = document.getElementById("cardFields").querySelectorAll("input[required], select[required]");
+      }
+
+      pagoFields.forEach((field) => {
+          if (!field.value) {
+              allPagoFieldsCompleted = false;
+          }
+      });
+
+      // Si todos los campos están completos, finalizar la compra
+      if (allPagoFieldsCompleted) {
+          alert("Compra finalizada");
+      } else {
+          alert("Por favor, completa todos los campos requeridos en la sección de pago.");
+      }
+  });
+});
+
+>>>>>>> 2e303f63f8d45e2e89c2edb8bb7c944dbe379d16
