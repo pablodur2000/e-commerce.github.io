@@ -137,6 +137,76 @@ const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impues
 
 
 
+//----------------------------------------------------------------------------------------------------------------------------------
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  const personalDataContainer = document.getElementById("content-1");
+  const envioContainer = document.getElementById("content-2");
+  const pagoContainer = document.getElementById("content-3"); // Sección de pago
 
+  // boton de continuar
+  document.querySelector(".button-next-pay").addEventListener("click", function(event) {
+      event.preventDefault();
+      
+      // se verifica si los campos fueron completados
+      const requiredFields = personalDataContainer.querySelectorAll("input[required]");
+      let allFieldsCompleted = true;
+      requiredFields.forEach((field) => {
+          if (!field.value) {
+              allFieldsCompleted = false;
+          }
+      });
+
+      // si se completan los campos se pasa a la parte de datos de envio
+      if (allFieldsCompleted) {
+          personalDataContainer.style.maxHeight = "0"; // ocultar datos personales
+          envioContainer.style.maxHeight = "fit-content"; // mostrar seccion de envío
+      } else {
+          alert("Por favor, completa todos los campos requeridos.");
+      }
+  });
+
+  // boton continuar
+  document.getElementById("continuar-btn").addEventListener("click", function(event) {
+      event.preventDefault();
+      
+      // se verifica que se hayan completado los campos
+      const envioFields = envioContainer.querySelectorAll("input[required]");
+      let allEnvioFieldsCompleted = true;
+      envioFields.forEach((field) => {
+          if (!field.value) {
+              allEnvioFieldsCompleted = false;
+          }
+      });
+
+      // Si todos los campos fueron completados, se pasa a la seccion de pago
+      if (allEnvioFieldsCompleted) {
+          envioContainer.style.maxHeight = "0"; // ocultar sección de envío
+          pagoContainer.style.maxHeight = "fit-content"; // mostrar seccion de pago
+      } else {
+          alert("Por favor, completa todos los campos requeridos en la sección de envío.");
+      }
+  });
+
+  // Botón finalizar compra en la seccion de pago
+  document.getElementById("finalizar-compra-btn").addEventListener("click", function(event) {
+      event.preventDefault();
+      
+      // se verifica si los campos de pago fueron completados
+      const pagoFields = pagoContainer.querySelectorAll("input[required]");
+      let allPagoFieldsCompleted = true;
+      pagoFields.forEach((field) => {
+          if (!field.value) {
+              allPagoFieldsCompleted = false;
+          }
+      });
+
+      // si todos los campos estan completos se muestra mensaje de compra finalizada
+      if (allPagoFieldsCompleted) {
+          alert("Compra finalizada");
+      } else {
+          alert("Por favor, completa todos los campos requeridos en la sección de pago.");
+      }
+  });
+});

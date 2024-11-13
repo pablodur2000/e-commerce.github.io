@@ -18,7 +18,7 @@ function updateCartCount() {
     if (totalCount > 0) {
       let badge = document.createElement("span");
       badge.className =
-        "cart-count-badge inline-block ml-1 px-2 py-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full";
+        "cart-count-badge inline-block ml-1 px-2 py-1 text-xs font-bold leading-none text-white bg-black rounded-full";
       badge.textContent = totalCount;
       cartLink.appendChild(badge);
     }

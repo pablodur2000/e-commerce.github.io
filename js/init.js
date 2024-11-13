@@ -116,8 +116,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   
   chequeoVentana();
 
-  userLogged = localStorage.getItem("user");
-  console.log("Usuario logeado: " + userLogged)
+  userLogged = localStorage.getItem("user")
   
   if(userLogged && (window.innerWidth > 639)){
     arrow.style.display = 'flex';                 //Si el usuario está ingresado y la ventana es mayor que 639, mostrar la flechita al lado del usuario
