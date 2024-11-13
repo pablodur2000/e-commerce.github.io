@@ -389,46 +389,16 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
 
-<<<<<<< HEAD
-      // si todos los campos fueron completados, se pasa a la seccion de pago
-      if (allEnvioFieldsCompleted) {
-          envioContainer.style.maxHeight = "0"; 
-          pagoContainer.style.maxHeight = "fit-content"; 
-=======
       if (allEnvioFieldsCompleted) {
           envioContainer.style.maxHeight = "0";
           pagoContainer.style.maxHeight = pagoContainer.scrollHeight + "px";
           document.getElementById("icon-2").style.transform = "rotate(0deg)";
           document.getElementById("icon-3").style.transform = "rotate(45deg)";
->>>>>>> 2e303f63f8d45e2e89c2edb8bb7c944dbe379d16
       } else {
           alert("Por favor, completa todos los campos requeridos en la sección de envío.");
       }
   });
 
-<<<<<<< HEAD
-  // boton para finalizar compra en la seccion de pago
-  document.getElementById("finalizar-compra-btn").addEventListener("click", function(event) {
-    event.preventDefault();
-    
-    // se verifica si al menos un campo de pago fue completado
-    const tarjetaField = pagoContainer.querySelector("input[name='tarjeta']"); 
-    const transferenciaField = pagoContainer.querySelector("input[name='transferencia']"); 
-    let metodoSeleccionado = false;
-    
-    // verificamos si al menos uno de los campos de pago tiene valor
-    if ((tarjetaField && tarjetaField.value) || (transferenciaField && transferenciaField.value)) {
-        metodoSeleccionado = true;
-    }
-
-    if (metodoSeleccionado) {
-        alert("Compra finalizada");
-    } else {
-        alert("Por favor, completa al menos una sección de pago (tarjeta o transferencia bancaria).");
-    }
-});
-});
-=======
   document.getElementById("finalizar-compra-btn").addEventListener("click", function(event) {
       event.preventDefault();
 
@@ -466,4 +436,3 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
->>>>>>> 2e303f63f8d45e2e89c2edb8bb7c944dbe379d16
