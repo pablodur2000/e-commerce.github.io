@@ -13,6 +13,46 @@ nav a {
   text-decoration: none;
 }
 
+
+
+.img-carr{
+  height: auto !important;
+  width: auto !important;
+}
+
+
+
+/* Asegura que el contenedor ocupe toda la altura de la pantalla en pantallas pequeñas */
+#carousel-wrapper {
+  max-height: 600px;
+  min-height: 500px;
+}
+
+/* En pantallas pequeñas, el contenedor ocupa el 100% de la altura */
+@media (max-width: 768px) {
+  #carousel-wrapper {
+    height: 30vh !important;
+    max-height: 30vh !important;
+    min-height: 30vh !important;
+  }
+  .img-carr {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #carousel-wrapper {
+    height: 20vh !important;
+    max-height: 20vh !important;
+    min-height: 20vh !important;
+  }
+}
+
+/* Asegura que las imágenes ocupen el 100% de la altura del contenedor */
+
+
+
+
 /* ----------------------------------------------NAV-------------------------------------- */
 #login-item-container{
   position: relative;
@@ -52,14 +92,7 @@ nav a {
   margin: 5px 0;
 }
 
-@media (max-width: 639px) {
-  #hidden-user-menu {
-    transform: translateY(100px);
-    right: -30px;
-    height: 140px;
-    gap: 2px;
-  }
-}
+
 
 .ul-class{
   position: relative !important;
