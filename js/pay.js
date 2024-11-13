@@ -136,7 +136,7 @@ const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impues
 
 
 
-/ Wait for the DOM to fully load
+
 document.addEventListener('DOMContentLoaded', function() {
   let couponsData = null;
 
