@@ -139,4 +139,169 @@ const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impues
 
 
 
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function() {
+  let couponsData = null;
+
+  // Fetch the coupons data
+  fetch('../cupons.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      couponsData = data;
+      initializeScript();
+    })
+    .catch(error => {
+      console.error('Error fetching coupons data:', error);
+      // Optionally, display an error message to the user
+    });
+
+  function initializeScript() {
+    // Get references to the elements
+    const shippingOptions = document.querySelectorAll('input[name="tipo_envio"]');
+    const subtotalElement = document.getElementById('subtotal-amount');
+    const envioAmountElement = document.getElementById('envio-amount');
+    const impuestoElement = document.getElementById('impuesto-amount');
+    const cuponElement = document.getElementById('cupon-amount');
+    const totalAmountElement = document.getElementById('total-amount');
+    const tipoEnvioLabel = document.getElementById('tipo-envio-seleccionado');
+
+    const cuponInput = document.getElementById('cupon-input');
+    const applyCouponButton = document.getElementById('apply-coupon-button');
+    const resultCupon = document.getElementById('result-cupon');
+
+    let cuponDiscount = 0; // Global variable to store the coupon discount
+
+    function updateTotal() {
+      // Get the subtotal amount
+      let subtotalText = subtotalElement.textContent;
+      let subtotalAmount = parseFloat(subtotalText.replace('$', ''));
+
+      // Get the shipping cost
+      let envioText = envioAmountElement.textContent;
+      let envioAmount = parseFloat(envioText.replace('$', ''));
+
+      // Get the impuesto amount
+      let impuestoAmount = parseFloat(impuestoElement.textContent.replace('$', ''));
+
+      // Calculate the coupon discount amount
+      let cuponDiscountAmount = subtotalAmount * cuponDiscount;
+      cuponElement.textContent = '- $' + cuponDiscountAmount.toFixed(2);
+
+      // Calculate the total amount
+      let totalAmount = subtotalAmount + envioAmount + impuestoAmount - cuponDiscountAmount;
+
+      // Update the "Total" amount
+      totalAmountElement.textContent = '$' + totalAmount.toFixed(2);
+    }
+
+    function updateShippingCost() {
+      // Get the selected shipping option
+      let selectedOption = document.querySelector('input[name="tipo_envio"]:checked');
+      if (selectedOption) {
+        let value = selectedOption.value;
+        let percentage = 0;
+        let shippingType = '';
+
+        // Determine the percentage based on the selected option
+        if (value === 'premium') {
+          percentage = 0.15;
+          shippingType = 'Premium';
+        } else if (value === 'express') {
+          percentage = 0.07;
+          shippingType = 'Express';
+        } else if (value === 'standard') {
+          percentage = 0.05;
+          shippingType = 'Standard';
+        }
+
+        // Get the subtotal amount
+        let subtotalText = subtotalElement.textContent;
+        let subtotalAmount = parseFloat(subtotalText.replace('$', ''));
+
+        // Calculate the shipping cost
+        let shippingCost = subtotalAmount * percentage;
+
+        // Update the "Envío" amount
+        envioAmountElement.textContent = '$' + shippingCost.toFixed(2);
+
+        // Update the selected shipping type label
+        tipoEnvioLabel.textContent = shippingType;
+
+        // Update the total amount
+        updateTotal();
+      }
+    }
+
+    // Add event listeners to the shipping options
+    shippingOptions.forEach(function(option) {
+      option.addEventListener('change', updateShippingCost);
+    });
+
+    // Function to validate and apply coupon
+    function applyCoupon() {
+      const enteredCode = cuponInput.value.trim().toUpperCase();
+      const today = new Date();
+
+      // Ensure couponsData is loaded
+      if (!couponsData) {
+        console.error('Coupons data not loaded');
+        return;
+      }
+
+      // Find the coupon in the data
+      const coupon = couponsData.cupones.find(c => c.codigo === enteredCode);
+
+      if (coupon) {
+        const expirationDate = new Date(coupon.vencimiento);
+        if (expirationDate >= today) {
+          // Coupon is valid
+          cuponDiscount = coupon.descuento;
+          resultCupon.textContent = 'Cupón aplicado: ' + (cuponDiscount * 100) + '% de descuento.';
+          resultCupon.style.color = 'green';
+
+          // Update the total amount
+          updateTotal();
+        } else {
+          // Coupon is expired
+          cuponDiscount = 0;
+          resultCupon.textContent = 'El cupón ha expirado.';
+          resultCupon.style.color = 'red';
+
+          // Update the total amount
+          updateTotal();
+        }
+      } else {
+        // Coupon not found
+        cuponDiscount = 0;
+        resultCupon.textContent = 'El cupón no es válido.';
+        resultCupon.style.color = 'red';
+
+        // Update the total amount
+        updateTotal();
+      }
+    }
+
+    // Event listener for the Apply Coupon button
+    applyCouponButton.addEventListener('click', applyCoupon);
+
+    // **New Event Listener for Coupon Input Changes**
+    cuponInput.addEventListener('input', function() {
+      if (cuponInput.value.trim() === '') {
+        // Coupon code is empty, reset the discount
+        cuponDiscount = 0;
+        cuponElement.textContent = '- $0.00';
+        resultCupon.textContent = ''; // Clear any messages
+        updateTotal();
+      }
+    });
+
+    // Initialize the amounts on page load
+    updateShippingCost();
+  }
+});
 
