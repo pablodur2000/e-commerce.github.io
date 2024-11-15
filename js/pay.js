@@ -235,12 +235,12 @@ function initializeScript() {
     const enteredCode = cuponInput.value.trim().toUpperCase();
     const today = new Date();
 
-    if (!couponsData) {
+    if (!cupons) {
       console.error('Coupons data not loaded');
       return;
     }
 
-    const coupon = couponsData.cupones.find(c => c.codigo === enteredCode);
+    const coupon = cupons.find(c => c.codigo === enteredCode);
 
     if (coupon) {
       const expirationDate = new Date(coupon.vencimiento);
@@ -294,26 +294,6 @@ initializeScript();
 // 'cuponInput.value' ----->                                 Para obtener el cupon, en caso de que 'activeCupon' es true
 
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  fetch('../cupons.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      couponsData = data;
-      initializeScript();
-    })
-    .catch(error => {
-      console.error('Error fetching coupons data:', error);
-    });
-  
-});
 
 
 function toggleAccordion(index) {
