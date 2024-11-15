@@ -128,7 +128,7 @@ const subtotal = cartItems.reduce(
 );
 
 const taxEstimate = oneItemWithUSDPrice ? subtotal * 0.01 : subtotal * 0.1; 
-localStorage.setItem("taxEstimated", taxEstimate); 
+localStorage.setItem("taxEstimated", taxEstimate.toFixed(2)); 
 
 const orderTotal = subtotal + taxEstimate;
 
