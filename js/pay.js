@@ -70,8 +70,7 @@ let activeCupon = false;
 
 cuponInput.addEventListener('input', () =>{
 
-  resultCupon.innerHTML = `<img src="/e-commerce.github.io/img/spinner-gif.webp" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">`
-
+  resultCupon.innerHTML = `<img src="/e-commerce.github.io/img/spinner-gif.webp" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">`  //spinner
  
   const input = cuponInput.value;
 
@@ -111,7 +110,6 @@ cuponInput.addEventListener('input', () =>{
 const productsContainer = document.getElementById("products-container");
 const currencyPay = localStorage.getItem("curencyPay");   //Obtenemos la moneda en que se va a realizar el pago UYU o USD
 const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impuesto estimado del carrito actual
-let couponsData = null;
 
 const showProducts = () =>{
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -152,7 +150,7 @@ const showProducts = () =>{
   envioAmountElement.textContent = currencyPay + ' ' + '0.00';
 }
 
-
+//------------------------------------------------------........-----------------------------------------------------------------
 
 
 function initializeScript() {
@@ -287,12 +285,6 @@ function initializeScript() {
 
 showProducts();
 initializeScript();
-
-//------------------------------------------------------........-----------------------------------------------------------------
-
-
-// 'cuponInput.value' ----->                                 Para obtener el cupon, en caso de que 'activeCupon' es true
-
 
 
 
