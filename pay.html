@@ -20,31 +20,72 @@
     <body id="body" class="bg-gray-100">
         <main>
 
-        <nav class="flex items-center justify-between p-6 h-20 shadow-sm bg-neutral-700">
-            <div class="py-5 px-3 rounded-full bg-gradient-to-r from-indigo-700 to-blue-500 text-sm text-white font-semibold shadow-lg hover:cursor-pointer hover:shadow-lg">LOGO</div>
-            <ul id="ul-id">
-              <li id="li-id" class="li text-xl">
-                <a href="index.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Inicio</a>
-                <a href="categories.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Categorias</a>
-                <a href="sell.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Vender</a>
-                <div class="sm:inline-block text-white hover:text-indigo-700" id="login-item-container">
-                  <a id="login-a" href="" class="li-a hidden sm:inline-block text-white hover:text-indigo-700" >Login</a>
-                  <img id="img-arrow-menu-id" class="img-arrow-menu" src="img/arrow-down.png" alt="">
+          <nav
+          class="flex items-center justify-between p-6 h-20 shadow-sm bg-white"
+        >
+       <a href="index.html"><img src="/e-commerce.github.io/img/logo.png" alt="Logo" class="logo"></a>  
+          <ul id="ul-id">
+            <li id="li-id" class="li text-xl">
+             
+              <a
+                href="categories.html"
+                class="li-a hidden sm:inline-block text-black hover:text-black"
+                >Categorias</a
+              >
+              <a
+                href="sell.html"
+                class="li-a hidden sm:inline-block text-black hover:text-black"
+                >Vender</a
+              >
+              <div
+                class="sm:inline-block text-black hover:text-black"
+                id="login-item-container"
+              >
+                <a
+                  id="login-a"
+                  href=""
+                  class="li-a hidden sm:inline-block text-black hover:text-black"
+                  >Login</a
+                >
+                <div class="img-arrow-menu-id-div">
+                  <svg id="img-arrow-menu-id" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 img-arrow-menu">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
                   <div id="hidden-user-menu">
-                      <a id="cart-link" href="cart.html" class="relative li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi carrito</a>
-        
-                      <a href="my-profile.html" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Mi perfil</a>
-                      <a href="" id="close-session-a" class="li-a hidden sm:inline-block text-white hover:text-indigo-700">Cerrar sesión</a>
+                    <a
+                      href="my-profile.html"
+                      class="li-a hidden sm:inline-block text-black hover:text-black"
+                      >Mi perfil</a
+                    >
+                    <a
+                      href=""
+                      id="close-session-a"
+                      class="li-a hidden sm:inline-block text-black hover:text-black"
+                      >Cerrar sesión</a
+                    >
                   </div>
                 </div>
-              </li>
-              <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
-                <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-                <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
-                <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+               
+               
+    
+                <a
+                id="cart-link"
+                href="cart.html"
+                class="relative li-a hidden sm:inline-block text-black hover:text-black"
+                > <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="
+                position: relative;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                </svg></a
+              >
               </div>
-            </ul>
-          </nav>
+            </li>
+            <div class="menu-button sm:hidden space-y-1 hover:cursor-pointer">
+              <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+              <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+              <span class="w-10 h-1 bg-gray-600 rounded-full block"></span>
+            </div>
+          </ul>
+        </nav>
 
 
       <div id="pay-wrapper" class="flex flex-col lg:flex-row lg:space-x-8 items-center pb-10 pt-10">
@@ -306,90 +347,72 @@
 
           </div>
 
-          <!-- Sección derecha del resumen de compra -->
+          <!------------------------------------------------------------------ Sección derecha del resumen de compra --------------------------------------->
           <div class="w-full lg:w-1/3 space-y-4 bg-gray-50 p-6 rounded-lg shadow-md" style="margin-right: 40px !important;">
             <!-- Título de resumen de compra -->
             <h2 class="text-2xl font-semibold text-gray-700">Resumen de compra</h2>
           
             <!-- Lista de productos en cards -->
-            <div class="space-y-4">
+            <div id="products-container" class="space-y-4">
               <!-- Cada producto será una card -->
-              <div class="flex items-center p-4 border border-gray-300 rounded-lg justify-between">
-                <img src="img/cat105_1.jpg"Producto" class="w-auto h-14 mr-3">
-                <div class="flex-1">
-                  <h3 class="text-lg font-medium text-gray-700">Nombre del producto</h3>
-                  <p class="product-count border border-2 border-gray-950">2</p>
-                </div>
-                <p class="text-lg font-semibold text-gray-700">$200</p>
-              </div>
+              
             
-              <!-- Card de ejemplo para otro producto -->
-              <div class="flex items-center p-4 border border-gray-300 rounded-lg justify-between">
-                <img src="img/cat101_1.jpg" alt="Producto" class="w-auto h-14 mr-3">
-                <div class="flex-1">
-                  <h3 class="text-lg font-medium text-gray-700">Nombre del producto 2</h3>
-                  <p class="product-count border border-2 border-gray-950">1</p>
-                </div>
-                <p class="text-lg font-semibold text-gray-700">$400</p>
-              </div>
-            
-              <!-- Más cards de productos se pueden agregar de manera similar -->
             </div>
 
             <!-- Sección de descuento y promociones -->
             <div class="pt-2 border-t border-gray-200 ">
               <!-- Código de descuento -->
-<div class="flex items-center space-x-2 p-3 bg-white">
-  <img src="img/icon-cupon.png" alt="Icono Descuento" class="w-auto h-12">
-  <p class="text-sm text-gray-600">Ingresa aquí un código de descuento</p>
-  <input type="text" id="cupon-input" class="mt-1 p-1 w-17 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Código">
-  <button id="apply-coupon-button" class="py-1 px-3 bg-blue-600 text-white rounded-md">Aplicar</button>
-</div>
-
-<!-- Div to display coupon validation messages -->
-<div id="result-cupon" class="flex items-center bg-white rounded-lg max-w-4x ml-4 text-red-500">
-  <!-- Messages will appear here -->
-</div>
-
-
-              <!-- Promociones bancarias -->
               <div class="flex items-center space-x-2 p-3 bg-white">
-                <img src="img/icon-bank.png" alt="Icono Promociones" class="w-auto h-12">
-                <p class="text-sm text-gray-600">Consultar promociones bancarias, <span style="font-weight: 700; text-decoration: underline; cursor: pointer;";">click aquí</span></p>
+                <img src="img/icon-cupon.png" alt="Icono Descuento" class="w-auto h-12">
+                <p class="text-sm text-gray-600">Ingresa aquí un código de descuento</p>
+                <input type="text" id="cupon-input" class="mt-1 p-1 w-17 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Código">
+                <button id="apply-coupon-button" class="py-1 px-3 bg-blue-600 text-white rounded-md">Aplicar</button>
               </div>
-            </div>
-          
-    
-<!-- Tipo de envío seleccionado -->
-<div class="border-t border-gray-200 pt-3">
-  <p class="text-gray-700 font-medium">
-    Tipo de envío: <span id="tipo-envio-seleccionado" class="font-semibold"></span>
-  </p>
-</div>
 
-<!-- Resumen de precios -->
-<div class="border-t border-gray-200 pt-3 space-y-2">
-  <div class="flex justify-between">
-    <span class="text-gray-600">Subtotal</span>
-    <span id="subtotal-amount" class="font-semibold text-gray-700">$600</span>
-  </div>
-  <div class="flex justify-between">
-    <span class="text-gray-600">Envío</span>
-    <span id="envio-amount" class="font-semibold text-gray-700">$0</span>
-  </div>
-  <div class="flex justify-between">
-    <span class="text-gray-600">Impuesto estimado</span>
-    <span id="impuesto-amount" class="font-semibold text-gray-700">$50</span>
-  </div>
-  <div class="flex justify-between">
-    <span class="text-gray-600">Cupón de descuento</span>
-    <span id="cupon-amount" class="font-semibold text-gray-700">- $0</span>
-  </div>
-  <div class="flex justify-between border-t border-gray-300 pt-2">
-    <span class="text-lg font-semibold text-gray-800">Total</span>
-    <span id="total-amount" class="text-lg font-semibold text-gray-800">$650</span>
-  </div>
-</div>
+              <!-- Div to display coupon validation messages -->
+              <div id="result-cupon" class="flex items-center bg-white rounded-lg max-w-4x ml-4 text-red-500">
+                <!-- Messages will appear here -->
+              </div>
+
+
+                <!-- Promociones bancarias -->
+                <div class="flex items-center space-x-2 p-3 bg-white">
+                  <img src="img/icon-bank.png" alt="Icono Promociones" class="w-auto h-12">
+                  <p class="text-sm text-gray-600">Consultar promociones bancarias, <span style="font-weight: 700; text-decoration: underline; cursor: pointer;";">click aquí</span></p>
+                </div>
+              </div>
+                        
+                        
+              <!-- Tipo de envío seleccionado -->
+              <div class="border-t border-gray-200 pt-3">
+                <p class="text-gray-700 font-medium">
+                  Tipo de envío: <span id="tipo-envio-seleccionado" class="font-semibold"></span>
+                </p>
+              </div>
+
+              <!-- Resumen de precios -->
+              <div class="border-t border-gray-200 pt-3 space-y-2">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span id="subtotal-amount" class="font-semibold text-gray-700">$900</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Envío</span>
+                  <span id="envio-amount" class="font-semibold text-gray-700">$0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Impuesto estimado</span>
+                  <span id="impuesto-amount" class="font-semibold text-gray-700">$50</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Cupón de descuento</span>
+                  <span id="cupon-amount" class="font-semibold text-gray-700">- $0</span>
+                </div>
+                <div class="flex justify-between border-t border-gray-300 pt-2">
+                  <span class="text-lg font-semibold text-gray-800">Total</span>
+                  <span id="total-amount" class="text-lg font-semibold text-gray-800">$650</span>
+                </div>
+              </div>
 
           
             <!-- Botones para realizar pago y volver al carrito -->

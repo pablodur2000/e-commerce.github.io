@@ -11,7 +11,6 @@ fetch('https://pablodur2000.github.io/e-commerce.github.io/cupons.json')
 .then(data => {
     // Mostramos los datos del JSON en la página
     cupons = data.cupones;
-    console.log("DATA FETCH : " + data.cupones[1].dueno)
 })
 .catch(error => {
     console.error('Error:', error);
@@ -33,35 +32,12 @@ const plusSVG = `
   </svg>
 `;
 
-let lastIndexAcordion = 1;
+
 const content1 = document.getElementById(`content-1`); 
 const icon1 = document.getElementById(`icon-1`); 
-content1.style.maxHeight = content1.scrollHeight + 'px';
+content1.style.maxHeight = content1.scrollHeight + 'px';   //---Por defecto, el primer elemento con maxima altura
 icon1.innerHTML = minusSVG;    //content 1 open default
 
-function toggleAccordion(index) {
-
-
-  const content = document.getElementById(`content-${index}`);
-  const icon = document.getElementById(`icon-${index}`);
-
-  // Toggle the content's max-height for smooth opening and closing
-  if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-    content.style.maxHeight = '0';
-    icon.innerHTML = plusSVG;
-  } else {
-    content.style.maxHeight = content.scrollHeight + 'px';
-    icon.innerHTML = minusSVG;
-  }
-
-  //--------------Hide last windows of acordion
-    
-  const lastContent = document.getElementById(`content-${lastIndexAcordion}`);
-  const lastIcon = document.getElementById(`icon-${lastIndexAcordion}`);
-  lastContent.style.maxHeight = '0';
-  lastIcon.innerHTML = plusSVG;
-  lastIndexAcordion = index;
-}
 
 //-----------------------------------Refresh the height of Content 3 - Acordeon
 document.querySelectorAll('.pay-method-radio').forEach(radio => {
@@ -73,7 +49,7 @@ document.querySelectorAll('.pay-method-radio').forEach(radio => {
 
 
 
-function togglePaymentFields(type) {
+function togglePaymentFields(type) {      //funcion para cambiar el front de tipo de pago, segun lo que el usuario elija
   document.getElementById("bankFields").classList.add("hidden");
   document.getElementById("cardFields").classList.add("hidden");
   if (type === "bank") {
@@ -94,15 +70,14 @@ let activeCupon = false;
 
 cuponInput.addEventListener('input', () =>{
 
-  resultCupon.innerHTML = `<img src="/e-commerce.github.io/img/spinner-gif.webp" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">`
-
+  resultCupon.innerHTML = `<img src="/e-commerce.github.io/img/spinner-gif.webp" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">`  //spinner
  
   const input = cuponInput.value;
 
   let i = 0;
-  setTimeout(() => {
-    while (cupons[i] !== undefined) {
-      if (input === cupons[i].codigo) {
+  setTimeout(() => {                      //---  Despues de animacion Spinner
+    while (cupons[i] !== undefined) {     //---  recorro todos los cupones hasta que haya una undefined
+      if (input === cupons[i].codigo) {   //--- Compara el cupon ingresado con el cupon seleccionado con la actual 'i'
         resultCupon.innerHTML = `
         <!-- Imagen a la derecha -->
         <img src="https://images.vexels.com/media/users/3/157932/isolated/preview/951a617272553f49e75548e212ed947f-icono-de-marca-de-verificacion-curvada.png" alt="Imagen Descuento" class="w-auto h-10 object-cover rounded-lg">
@@ -110,8 +85,8 @@ cuponInput.addEventListener('input', () =>{
         <div class="mr-8">
             <div class="ml-3 mb-2 text-md font-semibold"><strong>${cupons[i].dueno}</strong> te brinda un cupón con <strong>${cupons[i].descuento * 100}%</strong> de descuento</div>
         </div>`;   
-        activeCupon = true;
-        break;  // Sale del bucle cuando i es 5
+        activeCupon = true;  //si encuentra un cupon, setea la variable para indicar si hay cupon en true
+        break;  
       }else{
         resultCupon.innerHTML = `
         <!-- Imagen a la derecha -->
@@ -130,160 +105,187 @@ cuponInput.addEventListener('input', () =>{
 //------------------------------------------------------........-----------------------------------------------------------------
 
 
-const currencyPay = localStorage.getItem("currencyPay");   //Obtenemos la moneda en que se va a realizar el pago UYU o USD
+//----------------------------------------------------------------------------------------------------------------------Show products in resume
+
+const productsContainer = document.getElementById("products-container");
+const currencyPay = localStorage.getItem("curencyPay");   //Obtenemos la moneda en que se va a realizar el pago UYU o USD
 const taxEstimate = localStorage.getItem("taxEstimated")   //Obtenemos el impuesto estimado del carrito actual
-// 'cuponInput.value' ----->                                 Para obtener el cupon, en caso de que 'activeCupon' es true
+
+const showProducts = () =>{
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const subtotalElement = document.getElementById('subtotal-amount');
+  const impuestoElement = document.getElementById('impuesto-amount');
+  const envioAmountElement = document.getElementById('envio-amount');
+  let subtotal = 0;
 
 
+  cart.forEach(product => {   //--- Recorro todo el carrito actual
+    let price;
 
+    if (currencyPay === "UYU"){
+      price = product.cost;     //--- Si es en UYU
+    }else{
+      price = product.costUSD;  //--- Si es en USD
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-  let couponsData = null;
+    subtotal += price * product.productCountBuy;  //--- Multiplicamos el precio del prducto actual (product) por la cantidad comprada
 
-  fetch('../cupons.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      couponsData = data;
-      initializeScript();
-    })
-    .catch(error => {
-      console.error('Error fetching coupons data:', error);
-    });
+    let div = document.createElement("div");
 
-  function initializeScript() {
-
-    const shippingOptions = document.querySelectorAll('input[name="tipo_envio"]');
-    const subtotalElement = document.getElementById('subtotal-amount');
-    const envioAmountElement = document.getElementById('envio-amount');
-    const impuestoElement = document.getElementById('impuesto-amount');
-    const cuponElement = document.getElementById('cupon-amount');
-    const totalAmountElement = document.getElementById('total-amount');
-    const tipoEnvioLabel = document.getElementById('tipo-envio-seleccionado');
-
-    const cuponInput = document.getElementById('cupon-input');
-    const applyCouponButton = document.getElementById('apply-coupon-button');
-    const resultCupon = document.getElementById('result-cupon');
-
-    let cuponDiscount = 0; 
-
-    function updateTotal() {
-      
-      let subtotalText = subtotalElement.textContent;
-      let subtotalAmount = parseFloat(subtotalText.replace('$', ''));
-
+    div.className = 'flex items-center p-4 border border-gray-300 rounded-lg justify-between';
+    div.innerHTML = `
+                <img src="${product.image}" class="w-auto h-14 mr-3">
+                <div class="flex-1">
+                  <h3 class="text-lg font-medium text-gray-700">${product.name}</h3>
+                  <p class="product-count border border-2 border-gray-950">${product.productCountBuy}</p>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">${currencyPay} ${price}</p>`;
     
-      let envioText = envioAmountElement.textContent;
-      let envioAmount = parseFloat(envioText.replace('$', ''));
-
+    productsContainer.appendChild(div);
     
-      let impuestoAmount = parseFloat(impuestoElement.textContent.replace('$', ''));
+  })
 
-      let cuponDiscountAmount = subtotalAmount * cuponDiscount;
-      cuponElement.textContent = '- $' + cuponDiscountAmount.toFixed(2);
+  subtotalElement.textContent = currencyPay + ' ' + subtotal;     //--- Actualizamos los números del resumen de compras
+  impuestoElement.textContent = currencyPay + ' ' + taxEstimate;
+  envioAmountElement.textContent = currencyPay + ' ' + '0.00';
+}
+
+//------------------------------------------------------........-----------------------------------------------------------------
+
+
+function initializeScript() {
+
+  const shippingOptions = document.querySelectorAll('input[name="tipo_envio"]');
+  const subtotalElement = document.getElementById('subtotal-amount');
+  const envioAmountElement = document.getElementById('envio-amount');
+  const impuestoElement = document.getElementById('impuesto-amount');
+  const cuponElement = document.getElementById('cupon-amount');
+  const totalAmountElement = document.getElementById('total-amount');
+  const tipoEnvioLabel = document.getElementById('tipo-envio-seleccionado');
+
+  const cuponInput = document.getElementById('cupon-input');
+  const applyCouponButton = document.getElementById('apply-coupon-button');
+  const resultCupon = document.getElementById('result-cupon');
+
+  let cuponDiscount = 0; 
+  updateTotal()
+
+  function updateTotal() {
+    
+    let subtotalText = subtotalElement.textContent;
+    let subtotalAmount = parseFloat(subtotalText.replace(currencyPay, ''));
+    console.log("SUBTTTT: "  + subtotalAmount);
+  
+    let envioText = envioAmountElement.textContent;
+    let envioAmount = parseFloat(envioText.replace(currencyPay, ''));
+
+  
+    let impuestoAmount = parseFloat(impuestoElement.textContent.replace(currencyPay, ''));
+
+    let cuponDiscountAmount = subtotalAmount * cuponDiscount;
+    cuponElement.textContent = '- ' + currencyPay + " " + cuponDiscountAmount.toFixed(2);
+
+ 
+    let totalAmount = subtotalAmount + envioAmount + impuestoAmount - cuponDiscountAmount;
 
    
-      let totalAmount = subtotalAmount + envioAmount + impuestoAmount - cuponDiscountAmount;
-
-     
-      totalAmountElement.textContent = '$' + totalAmount.toFixed(2);
-    }
-
-    function updateShippingCost() {
-   
-      let selectedOption = document.querySelector('input[name="tipo_envio"]:checked');
-      if (selectedOption) {
-        let value = selectedOption.value;
-        let percentage = 0;
-        let shippingType = '';
-
-        if (value === 'premium') {
-          percentage = 0.15;
-          shippingType = 'Premium';
-        } else if (value === 'express') {
-          percentage = 0.07;
-          shippingType = 'Express';
-        } else if (value === 'standard') {
-          percentage = 0.05;
-          shippingType = 'Standard';
-        }
-
-        let subtotalText = subtotalElement.textContent;
-        let subtotalAmount = parseFloat(subtotalText.replace('$', ''));
-
-        let shippingCost = subtotalAmount * percentage;
-
-        envioAmountElement.textContent = '$' + shippingCost.toFixed(2);
-
-        tipoEnvioLabel.textContent = shippingType;
-
-        updateTotal();
-      }
-    }
-
-    shippingOptions.forEach(function(option) {
-      option.addEventListener('change', updateShippingCost);
-    });
-
-
-    function applyCoupon() {
-      const enteredCode = cuponInput.value.trim().toUpperCase();
-      const today = new Date();
-
-      if (!couponsData) {
-        console.error('Coupons data not loaded');
-        return;
-      }
-
-      const coupon = couponsData.cupones.find(c => c.codigo === enteredCode);
-
-      if (coupon) {
-        const expirationDate = new Date(coupon.vencimiento);
-        if (expirationDate >= today) {
-
-          cuponDiscount = coupon.descuento;
-          resultCupon.textContent = 'Cupón aplicado: ' + (cuponDiscount * 100) + '% de descuento.';
-          resultCupon.style.color = 'green';
-
-          updateTotal();
-        } else {
-        
-          cuponDiscount = 0;
-          resultCupon.textContent = 'El cupón ha expirado.';
-          resultCupon.style.color = 'red';
-          updateTotal();
-        }
-      } else {
-
-        cuponDiscount = 0;
-        resultCupon.textContent = 'El cupón no es válido.';
-        resultCupon.style.color = 'red';
-
-        updateTotal();
-      }
-    }
-
-
-    applyCouponButton.addEventListener('click', applyCoupon);
-
-
-    cuponInput.addEventListener('input', function() {
-      if (cuponInput.value.trim() === '') {
-
-        cuponDiscount = 0;
-        cuponElement.textContent = '- $0.00';
-        resultCupon.textContent = '';
-        updateTotal();
-      }
-    });
-
-    updateShippingCost();
+    totalAmountElement.textContent = currencyPay + ' ' + totalAmount.toFixed(2);
   }
-});
+
+  function updateShippingCost() {
+ 
+    let selectedOption = document.querySelector('input[name="tipo_envio"]:checked');
+    if (selectedOption) {
+      let value = selectedOption.value;
+      let percentage = 0;
+      let shippingType = '';
+
+      if (value === 'premium') {
+        percentage = 0.15;
+        shippingType = 'Premium';
+      } else if (value === 'express') {
+        percentage = 0.07;
+        shippingType = 'Express';
+      } else if (value === 'standard') {
+        percentage = 0.05;
+        shippingType = 'Standard';
+      }
+
+      let subtotalText = subtotalElement.textContent;
+      let subtotalAmount = parseFloat(subtotalText.replace(currencyPay, ''));
+
+      let shippingCost = subtotalAmount * percentage;
+
+      envioAmountElement.textContent = currencyPay + ' ' + shippingCost.toFixed(2);
+
+      tipoEnvioLabel.textContent = shippingType;
+
+      updateTotal();
+    }
+  }
+
+  shippingOptions.forEach(function(option) {
+    option.addEventListener('change', updateShippingCost);
+  });
+
+
+  function applyCoupon() {
+    const enteredCode = cuponInput.value.trim().toUpperCase();
+    const today = new Date();
+
+    if (!cupons) {
+      console.error('Coupons data not loaded');
+      return;
+    }
+
+    const coupon = cupons.find(c => c.codigo === enteredCode);
+
+    if (coupon) {
+      const expirationDate = new Date(coupon.vencimiento);
+      if (expirationDate >= today) {
+
+        cuponDiscount = coupon.descuento;
+        resultCupon.textContent = 'Cupón aplicado: ' + (cuponDiscount * 100) + '% de descuento.';
+        resultCupon.style.color = 'green';
+
+        updateTotal();
+      } else {
+      
+        cuponDiscount = 0;
+        resultCupon.textContent = 'El cupón ha expirado.';
+        resultCupon.style.color = 'red';
+        updateTotal();
+      }
+    } else {
+
+      cuponDiscount = 0;
+      resultCupon.textContent = 'El cupón no es válido.';
+      resultCupon.style.color = 'red';
+
+      updateTotal();
+    }
+  }
+
+
+  applyCouponButton.addEventListener('click', applyCoupon);
+
+
+  cuponInput.addEventListener('input', function() {
+    if (cuponInput.value.trim() === '') {
+
+      cuponDiscount = 0;
+      cuponElement.textContent = '0.00';
+      resultCupon.textContent = '';
+      updateTotal();
+    }
+  });
+
+  updateShippingCost();
+}
+
+showProducts();
+initializeScript();
+
 
 
 function toggleAccordion(index) {
