@@ -5,6 +5,7 @@ const buttonNewsletter = document.getElementById("newsletter-button");
 const pNewsletter = document.getElementById("p-newsletter");
 const inputNewsletter = document.getElementById("form-newsletter");
 const textConfirmed = document.getElementById("container-confirmed-suscription");
+const spiner = document.getElementById("spinner-wrapper");
 
 let currentProductsArray2 = [];
 
