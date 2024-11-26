@@ -12,7 +12,7 @@ let currentProductsArray2 = [];
 const fetchCategories = async () => {
     try {
         const categoryID = localStorage.getItem('catID')
-        const response = await fetch(`https://japceibal.github.io/emercado-api/cats/cat.json`);
+        const response = await fetch(CATEGORIES_URL);
 
         if (!response.ok) {
             throw new Error('No hay respuesta: ' + response.statusText);

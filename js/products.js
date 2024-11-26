@@ -14,7 +14,7 @@ const ORDER_DESC_BY_RELEVANCE = "DESC_RELEVANCE";
 const fetchProducts = async () => {
     try {
         spiner.style.display = 'flex';
-        const response = await fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryID}.json`);
+        const response = await fetch(PRODUCTS_URL + categoryID);
 
          if (!response.ok) {
             throw new Error('No hay respuesta: ' + response.statusText);

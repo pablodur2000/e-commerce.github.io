@@ -28,7 +28,7 @@ const productData = async () => {
   });
 
   const response = await fetch(
-    `https://japceibal.github.io/emercado-api/products_comments/${data.id}.json`
+    PRODUCT_INFO_COMMENTS_URL + data.id
   );
 
   if (!response.ok) {
