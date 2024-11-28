@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   userLogged = localStorage.getItem("token")
   console.log("USER LOGDED ", userLogged);
   if(!userLogged){
-    window.location.href = 'client/login.html';
+    window.location.href = '/login.html';
   }
   
   if(userLogged && (window.innerWidth > 639)){
@@ -165,7 +165,7 @@ containerHiddenMenu.addEventListener("click", clickMenu);
 closeSessionButton.addEventListener('click', (e) => {   //evento para cerrar sesion
   e.preventDefault();
   localStorage.removeItem("token");
-  window.location.href = 'client/login.html';
+  window.location.href = '/login.html';
 });
 
 
@@ -174,7 +174,7 @@ closeSessionButton.addEventListener('click', (e) => {   //evento para cerrar ses
 loginNavItem.addEventListener('click', (e) => {         //evento para redireccionar a login si el usuario no está ingresado
   e.preventDefault();
   if(!userLogged){
-    window.location.href = 'client/login.html';
+    window.location.href = '/login.html';
   }
 });
 
