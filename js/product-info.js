@@ -357,9 +357,9 @@ buttonsBuy.forEach((button) => {
 
       if (!button.classList.contains("add-to-cart")) {
         if (window.location.hostname !== "pablodur2000.github.io") {
-          window.location.href = "/client/cart.html";
+          window.location.href = "/cart.html";
         } else {
-          window.location.href = "/e-commerce.github.io/client/cart.html";
+          window.location.href = "/e-commerce.github.io/cart.html";
         }
       }
     }, 1200);
