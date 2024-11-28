@@ -39,7 +39,7 @@ document.getElementById("login").addEventListener("submit", async function (e) {
           }else{
             alert("Login exitoso");
             localStorage.setItem("token", data.token);
-            window.location.href = "/client/index.html";
+            window.location.href = "/e-commerce.github.io/index.html";
         }
         })
         .catch(error => {

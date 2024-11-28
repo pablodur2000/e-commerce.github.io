@@ -201,7 +201,7 @@ function startPay() {
       timer: 3000 // Tiempo en milisegundos antes de que la alerta se cierre automáticamente
     });
     setTimeout(() => {
-      window.location.href = '/e-commerce.github.io/client/pay.html'
+      window.location.href = '/e-commerce.github.io/pay.html'
     }, 2000);
   }, 1400);
 }
