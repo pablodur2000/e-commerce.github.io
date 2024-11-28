@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   userLogged = localStorage.getItem("token")
   console.log("USER LOGDED ", userLogged);
   if(!userLogged){
-    window.location.href = 'client/login.html';
+    window.location.href = '/login.html';
   }
   
   if(userLogged && (window.innerWidth > 639)){
