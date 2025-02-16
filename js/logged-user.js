@@ -1,23 +1,30 @@
 function decodeJWT(token) {
+    if (!token) return null;
+    
     const parts = token.split('.');
     
     if (parts.length !== 3) {
-      throw new Error('Invalid JWT token');
+        return null;
     }
   
-    const payload = parts[1]; // La segunda parte contiene el payload (datos)
-    const decodedPayload = atob(payload); // Decodifica Base64Url a texto
-    return JSON.parse(decodedPayload); // Parsea el texto JSON
-  }
+    try {
+        const payload = parts[1];
+        const decodedPayload = atob(payload);
+        return JSON.parse(decodedPayload);
+    } catch (error) {
+        console.error('Error decoding JWT:', error);
+        return null;
+    }
+}
 
 const navItemLogin = document.querySelectorAll('.li-a');
-
+const token = localStorage.getItem('token');
 const decodedPayload = decodeJWT(token);
 
-if (!decodedPayload.user_name){
+if (!decodedPayload || !decodedPayload.user_name) {
     navItemLogin[2].innerHTML = "Login";
-}else{
+} else {
     navItemLogin[2].innerHTML = decodedPayload.user_name;
     localStorage.setItem("user_name", decodedPayload.user_name);
     localStorage.setItem("user_id", decodedPayload.user_id);
-};
+}
