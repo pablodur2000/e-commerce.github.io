@@ -25,18 +25,21 @@
 
    <nav
       class="flex items-center justify-between p-6 h-20 shadow-sm bg-white"
+      data-testid="main-header"
     >
-    <a href="index.html"><img src="/e-commerce.github.io/img/logo.png" alt="Logo" class="logo"></a>
+    <a href="index.html" data-testid="logo-link"><img src="/e-commerce.github.io/img/logo.png" alt="Logo" class="logo"></a>
       <ul id="ul-id">
         <li id="li-id" class="li text-xl">
          
           <a
             href="categories.html"
+            data-testid="categories-link"
             class="li-a hidden sm:inline-block text-black hover:text-black"
             >Categorias</a
           >
           <a
             href="sell.html"
+            data-testid="sell-link"
             class="li-a hidden sm:inline-block text-black hover:text-black"
             >Vender</a
           >
@@ -82,25 +85,25 @@
   <main class="mt-5">
     <div class="container container-login">
       
-      <section class="login-section">
+      <section class="login-section" data-testid="login-section">
           <h1>Login</h1>
 
-          <form id="login" action="">
+          <form id="login" action="" data-testid="login-form">
             <div class="item-form-container">
               <label for="user" class="form-label">Usuario</label>
               <div class="icon-and-input-div">
                 <i class="fa-solid fa-user"></i>
-                <input placeholder="Nombre de usuario" type="text" name="user" class="form-input" id="user">
+                <input data-testid="username-input" placeholder="Nombre de usuario" type="text" name="user" class="form-input" id="user">
               </div>
             </div>
             <div class="item-form-container">
               <label for="password" class="form-label">Contraseña</label>
               <div class="icon-and-input-div">
                 <i class="fa-solid fa-lock"></i>
-                <input placeholder="Ingrese su contraseña" type="password" name="password" class="form-input" id="password">
+                <input data-testid="password-input" placeholder="Ingrese su contraseña" type="password" name="password" class="form-input" id="password">
               </div>
             </div>
-            <button type="submit" class="form-button">Ingresar</button>
+            <button type="submit" class="form-button" data-testid="submit-button">Ingresar</button>
           </form>
 
       </section>
@@ -109,7 +112,8 @@
   </main>
 
   <footer
-  class="bg-zinc-50 text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left">
+  class="bg-zinc-50 text-center text-surface/75 dark:bg-neutral-700 dark:text-white/75 lg:text-left"
+  data-testid="main-footer">
   <div
     class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-white/10 lg:justify-between">
     <div class="me-12 hidden lg:block">
@@ -184,7 +188,7 @@
   <div class="mx-6 py-10 text-center md:text-left">
     <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
       <!-- TW Elements section -->
-      <div class="">
+      <div data-testid="footer-store-info">
         <h6
           class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
           <span class="me-3 [&>svg]:h-4 [&>svg]:w-4">
@@ -204,7 +208,7 @@
         </p>
       </div>
       <!-- Products section -->
-      <div>
+      <div data-testid="footer-newsletter">
         <h6
           class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
           Suscribite
@@ -221,7 +225,7 @@
 
       </div>
       <!-- Useful links section -->
-      <div>
+      <div data-testid="footer-categories">
         <h6
           class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
           Categorias recomendadas
@@ -240,7 +244,7 @@
         </p>
       </div>
       <!-- Contact section -->
-      <div>
+      <div data-testid="footer-contact">
         <h6
           class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
           Contactanos:
