@@ -17,10 +17,9 @@ function decodeJWT(token) {
     }
 }
 
-// Check if variables already exist before declaring them
-if (typeof navItemLogin === 'undefined') {
-    const navItemLogin = document.querySelectorAll('.li-a');
-}
+
+const navItemLogin = document.querySelectorAll('.li-a');
+
 
 // Use existing token if available, otherwise get it from localStorage
 const existingToken = window.token || localStorage.getItem('token');
